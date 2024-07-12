@@ -6,7 +6,6 @@
     勾选住你要提交的文件
     commm 提交
     然后push到GitHub
-    我去更新一下代码，然后给你看一下拉取代码流程
 </template>
 
 <script setup>
