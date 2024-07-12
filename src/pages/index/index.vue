@@ -3,6 +3,9 @@
     <IndexHeader></IndexHeader>
     这个指令用于刷新vue代码提示插件，有时候插件会出问题
     ctrl + shift +p
+    勾选住你要提交的文件
+    commm 提交
+    然后push到GitHub
 </template>
 
 <script setup>
