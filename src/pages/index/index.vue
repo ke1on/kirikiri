@@ -1,6 +1,7 @@
 <!-- 首页 -->
 <template>
     <IndexHeader></IndexHeader>
+    test
 </template>
 
 <script setup>
