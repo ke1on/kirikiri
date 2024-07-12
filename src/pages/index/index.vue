@@ -1,7 +1,8 @@
 <!-- 首页 -->
 <template>
     <IndexHeader></IndexHeader>
-    test
+    这个指令用于刷新vue代码提示插件，有时候插件会出问题
+    ctrl + shift +p
 </template>
 
 <script setup>
