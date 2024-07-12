@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*:root {
+    --baseColor: #18191C;
+    --textColorPink:#FF538E;
+    --textColor1: #61666D;
+    --textColor2: #9499A0;
+    --textColor3: #C9CCD0; 
+    color: var(--baseColor);
+}

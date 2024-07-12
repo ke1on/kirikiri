@@ -1,0 +1,7 @@
+@keyframes AnimationText {
+    50% {
+        transform: translateY(-10%);
+        padding-bottom: 20px;
+    }
+}
+$textAnimation:.2s ease-out AnimationText;
