@@ -1,8 +1,6 @@
 <!-- 首页 -->
 <template>
-    <IndexHeader></IndexHeader>
-    1111231231321323
-    1111123131312314178168747814124124
+    <IndexHeader></IndexHeader> 
 </template>
 
 <script setup>
