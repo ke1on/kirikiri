@@ -1,7 +1,7 @@
 <template>
     <div class='right'>
         <ul>
-            <dropdown style="--width:20rem;" l="calc(var(--width) / -2)">
+            <dropdown style="--width:20rem;" l="">
                 <template #f>
                     <li class="item avatar ">
                         <!-- <img src="~/assets/img/test.png" alt="avatar"> -->
