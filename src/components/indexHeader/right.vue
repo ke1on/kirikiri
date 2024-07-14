@@ -2,16 +2,17 @@
     <div class='right'>
         <ul>
 
-            <dropdown @setAnimationDone="setAnimationDone" @setAnimationStart="setAnimationStart"
-                :animationDone="animationDone" :animationStart="animationStart" :avatar="true">
+            <li>
+                <dropdown @setAnimationDone="setAnimationDone" @setAnimationStart="setAnimationStart"
+                :data="navList[0]" :avatar="true">
                 <template #f>
-                    <li :class="avatarClassName">
+                    <div :class="avatarClassName">
                         <!-- <img src="~/assets/img/test.png" alt="avatar"> -->
                         <NuxtImg class="img"
                             src="http://ke1on.top:5999/%E4%B8%BA%E7%BE%8E%E5%A5%BD%E7%9A%84%E4%B8%96%E7%95%8C%E7%8C%AE%E4%B8%8A%E7%A5%9D%E7%A6%8F.jpg"
                             loading="lazy"></NuxtImg>
 
-                    </li>
+                    </div>
                 </template>
                 <template #c v-if="animationDone">
                     <div class="dropdown">
@@ -33,6 +34,7 @@
 
                 </template>
             </dropdown>
+            </li>
             <li class="item avatarCopy via-gray-900"></li>
             <li class="item">
                 <svg-bigVip></svg-bigVip>
@@ -71,6 +73,15 @@ const setAnimationStart = (val) => {
 const setAnimationDone = (val) => {
     animationDone.value = val
 }
+const navList=reactive([
+    {name:'头像',animationDone:false,animationStart:false},
+    {name:'大会员',animationDone:false,animationStart:false},
+    {name:'消息',animationDone:false,animationStart:false},
+    {name:'动态',animationDone:false,animationStart:false},
+    {name:'收藏',animationDone:false,animationStart:false},
+    {name:'历史',animationDone:false,animationStart:false},
+    {name:'创作中心',animationDone:false,animationStart:false},
+])
 const avatarClassName = computed(() => {
     return animationStart.value ? 'item avatar avatarAnimationStart' : 'item avatar '
 })
