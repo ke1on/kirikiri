@@ -37,6 +37,9 @@
             </li>
             <li class="item avatarCopy via-gray-900"></li>
             <li class="item">
+                <Dropdown>
+                    
+                </Dropdown>
                 <svg-bigVip></svg-bigVip>
                 <p>大会员</p>
             </li>
