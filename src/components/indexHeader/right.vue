@@ -1,7 +1,7 @@
 <template>
     <div class='right'>
         <ul>
-            <Dropdown @setAnimationDone="setAnimationDone" @setAnimationStart="setAnimationStart" :data="navList[0]"
+            <Dropdown @setAnimationStart="setAnimationStart" :avatarAnimationStart="avatarAnimationStart"
                 :avatar="true">
                 <template #f>
                     <div :class="avatarClassName">
@@ -12,22 +12,41 @@
 
                     </div>
                 </template>
+<<<<<<< Updated upstream
                 <template #c v-if="navList[0].animationDone">
                     <IndexHeaderRightUserDropdown class="dropdown"></IndexHeaderRightUserDropdown>
+=======
+                <template #c>
+                    <div class="dropdown">
+                        <p class="useName">{{ 'Ke1on' }}</p>
+                        <p class="useInfo">
+                            <img src="~/assets/img/bigVip.avif" alt="">
+                            <svg-lv6 />
+                        </p>
+                        <p class="useInfo2">
+                            <small><span>硬币：</span>1688</small>
+                            <small><span>K币：</span>1688</small>
+                        </p>
+                        <p class="useInfo3">
+                            <small><span>20</span><span>关注</span></small>
+                            <small><span>20</span><span>粉丝</span></small>
+                            <small><span>20</span><span>动态</span></small>
+                        </p>
+                    </div>
+>>>>>>> Stashed changes
 
                 </template>
             </Dropdown>
             <li class="item avatarCopy via-gray-900"></li>
             <li class="item">
-                <Dropdown @setAnimationDone="setAnimationDone" @setAnimationStart="setAnimationStart"
-                    :data="navList[1]">
+                <Dropdown>
                     <template #f>
                         <div class="flex flex-col items-center">
                             <svg-bigVip></svg-bigVip>
                             <p>大会员</p>
                         </div>
                     </template>
-                    <template #c v-if="navList[1].animationDone">
+                    <template #c>
                         <div class="dropdown">
                             1231312312321
                         </div>
@@ -37,15 +56,14 @@
 
             </li>
             <li class="item">
-                <Dropdown @setAnimationDone="setAnimationDone" @setAnimationStart="setAnimationStart"
-                    :data="navList[2]">
+                <Dropdown>
                     <template #f>
                         <div class="flex flex-col items-center">
                             <svg-message></svg-message>
                             <p>消息</p>
                         </div>
                     </template>
-                    <template #c v-if="navList[2].animationDone">
+                    <template #c>
                         1231321231
 
                     </template>
@@ -53,58 +71,54 @@
             </li>
             <li class="item">
 
-                <Dropdown @setAnimationDone="setAnimationDone" @setAnimationStart="setAnimationStart"
-                    :data="navList[3]">
+                <Dropdown>
                     <template #f>
                         <div class="flex flex-col items-center">
                             <svg-news></svg-news>
                             <p>动态</p>
                         </div>
                     </template>
-                    <template #c v-if="navList[3].animationDone">
+                    <template #c>
                         1231321231
 
                     </template>
                 </Dropdown>
             </li>
             <li class="item">
-                <Dropdown @setAnimationDone="setAnimationDone" @setAnimationStart="setAnimationStart"
-                    :data="navList[4]">
+                <Dropdown>
                     <template #f>
                         <div class="flex flex-col items-center">
                             <svg-collect></svg-collect>
                             <p>收藏</p>
                         </div>
                     </template>
-                    <template #c v-if="navList[4].animationDone">
+                    <template #c>
                         asdadsasdsadad
                     </template>
                 </Dropdown>
             </li>
-            <li class="item"> 
-                <Dropdown @setAnimationDone="setAnimationDone" @setAnimationStart="setAnimationStart"
-                    :data="navList[5]">
+            <li class="item">
+                <Dropdown>
                     <template #f>
                         <div class="flex flex-col items-center">
                             <svg-history></svg-history>
                             <p>历史</p>
                         </div>
                     </template>
-                    <template #c v-if="navList[5].animationDone">
+                    <template #c>
                         123123
                     </template>
                 </Dropdown>
             </li>
-            <li class="item"> 
-                <Dropdown @setAnimationDone="setAnimationDone" @setAnimationStart="setAnimationStart"
-                    :data="navList[6]">
+            <li class="item">
+                <Dropdown>
                     <template #f>
                         <div class="flex flex-col items-center">
                             <svg-invent></svg-invent>
                             <p>创作中心</p>
                         </div>
                     </template>
-                    <template #c v-if="navList[6].animationDone">
+                    <template #c>
                         1233123131
                     </template>
                 </Dropdown>
@@ -116,31 +130,13 @@
 <script setup>
 // const animationDone = ref(false);
 // const animationStart = ref(false);
-const setAnimationStart = ({ val, name }) => {
-    navList.forEach(item => {
-        if (item.name === name) {
-            item.animationStart = val
-        }
-    })
+const avatarAnimationStart = ref(false)
+const setAnimationStart = ({ val }) => {
+    avatarAnimationStart.value = val
 }
-const setAnimationDone = ({ val, name }) => {
-    navList.forEach(item => {
-        if (item.name === name) {
-            item.animationDone = val
-        }
-    })
-}
-const navList = reactive([
-    { name: '头像', animationDone: false, animationStart: false },
-    { name: '大会员', animationDone: false, animationStart: false },
-    { name: '消息', animationDone: false, animationStart: false },
-    { name: '动态', animationDone: false, animationStart: false },
-    { name: '收藏', animationDone: false, animationStart: false },
-    { name: '历史', animationDone: false, animationStart: false },
-    { name: '创作中心', animationDone: false, animationStart: false },
-])
+
 const avatarClassName = computed(() => {
-    return navList[0].animationStart ? 'item avatar avatarAnimationStart' : 'item avatar '
+    return avatarAnimationStart.value ? 'item avatar avatarAnimationStart' : 'item avatar '
 })
 
 </script>

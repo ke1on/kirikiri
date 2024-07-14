@@ -3,7 +3,10 @@
     <div :class="dropdownContainerClassName" @mouseover="start" @mouseleave="over">
         <slot name="f"></slot>
         <div class="p" :style="{ 'top': avatar ? '50%' : '120%' }">
-            <slot name="c"></slot>
+            <div v-if="animationDone">
+                <slot name="c"></slot>
+            </div>
+
         </div>
     </div>
 
@@ -11,37 +14,37 @@
 </template>
 
 <script setup>
-const emit = defineEmits(['setAnimationDone', 'setAnimationStart'])
+const emit = defineEmits(['setAnimationStart'])
+const animationDone = ref(false)
 const props = defineProps(['data', 'avatar'])
 const dropdownContainerClassName = computed(() => {
-    return props.avatar ? 'dropdown-container dropdown-container-animation-start' : 'dropdown-container'
+    return props.avatar ? 'dropdown-container dropdown-container-animation-start'
+        : 'dropdown-container';
 })
 let startFnCopy;
 let timer;
 let start = () => {
     startFnCopy = start;
     if (!props.avatar) {
-        emit('setAnimationDone', { val: true, name: props.data.name })
+        animationDone.value = true
+
     } else {
+        emit('setAnimationStart', { val: true })
         timer = setTimeout(() => {
-            emit('setAnimationDone', { val: true, name: props.data.name })
+            animationDone.value = true
         }, 300);
     }
-    try {
-        emit('setAnimationStart', { val: true, name: props.data.name })
-    } catch (error) { }
+    //防止鼠标移出后，动画还没结束，鼠标移入，导致动画消失
     start = () => { }
 }
 const over = () => {
-    try {
-        emit('setAnimationStart', { val: false, name: props.data.name })
-    } catch (error) { }
-    emit('setAnimationDone', { val: false, name: props.data.name })
-    if (!props.avatar) {
+    animationDone.value = false
+    if (!props.avatar) { 
         setTimeout(() => {
             start = startFnCopy;
         }, 300);
     } else {
+        emit('setAnimationStart', { val: false, })
         start = startFnCopy;
     }
     clearTimeout(timer)
