@@ -1,9 +1,11 @@
 <template>
     <div class='right'>
         <ul>
-            <dropdown style="--width:20rem;" l="">
+           
+            <dropdown   @setAnimationDone="setAnimationDone" @setAnimationStart="setAnimationStart"
+                :animationDone="animationDone" :animationStart="animationStart" :avatar="true">
                 <template #f>
-                    <li class="item avatar ">
+                    <li :class="avatarClassName">
                         <!-- <img src="~/assets/img/test.png" alt="avatar"> -->
                         <NuxtImg class="img"
                             src="http://ke1on.top:5999/%E4%B8%BA%E7%BE%8E%E5%A5%BD%E7%9A%84%E4%B8%96%E7%95%8C%E7%8C%AE%E4%B8%8A%E7%A5%9D%E7%A6%8F.jpg"
@@ -11,8 +13,8 @@
 
                     </li>
                 </template>
-                <template #c>
-                    <div  class="dropdown" >
+                <template #c v-if="animationDone">
+                    <div class="dropdown">
                         <p class="useName">{{ 'Ke1on' }}</p>
                         <p class="useInfo">
                             <img src="~/assets/img/bigVip.avif" alt="">
@@ -31,6 +33,7 @@
 
                 </template>
             </dropdown>
+                    <li class="item avatarCopy via-gray-900"></li>
             <li class="item">
                 <svg></svg>
                 <p>大会员</p>
@@ -60,7 +63,17 @@
 </template>
 
 <script setup>
-
+const animationDone = ref(false);
+const animationStart = ref(false);
+const setAnimationStart = (val) => {
+    animationStart.value = val 
+}
+const setAnimationDone = (val) => {
+    animationDone.value = val
+}
+const avatarClassName = computed(() => {
+    return animationStart.value ? 'item avatar avatarAnimationStart' : 'item avatar '
+})
 </script>
 <style scoped lang='scss'>
 .right {
@@ -74,6 +87,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        position: relative;
 
         .item {
             position: relative;
@@ -91,26 +105,42 @@
             }
         }
 
+        .avatarCopy {
+            height: calc(4rem + 2px);
+            width: calc(4rem + 2px);
+        }
+
         .avatar {
             height: 4rem;
-            aspect-ratio: 1;
+            width: 4rem;
+            position: relative;
+            z-index: 2;
+            transition: height 0.5s ease-out, width 0.4s ease-in-out;
 
             &>img {
                 border: 2px solid white;
                 border-radius: 50%;
             }
         }
+
+        .avatarAnimationStart {
+            height: 8rem;
+            width: 8rem;
+        }
     }
 }
 
+
+
 .dropdown {
+    margin-top: 3rem;
     display: flex;
     flex-direction: column;
     gap: .5rem;
-    border-radius: .5rem;
-    width: var(--width);
+    width: 20rem;
     padding: 1rem;
     background-color: white;
+
     .useName {
         font-size: large;
         font-weight: 400;
