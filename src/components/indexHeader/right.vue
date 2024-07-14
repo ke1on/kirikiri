@@ -12,29 +12,8 @@
 
                     </div>
                 </template>
-<<<<<<< Updated upstream
-                <template #c v-if="navList[0].animationDone">
-                    <IndexHeaderRightUserDropdown class="dropdown"></IndexHeaderRightUserDropdown>
-=======
                 <template #c>
-                    <div class="dropdown">
-                        <p class="useName">{{ 'Ke1on' }}</p>
-                        <p class="useInfo">
-                            <img src="~/assets/img/bigVip.avif" alt="">
-                            <svg-lv6 />
-                        </p>
-                        <p class="useInfo2">
-                            <small><span>硬币：</span>1688</small>
-                            <small><span>K币：</span>1688</small>
-                        </p>
-                        <p class="useInfo3">
-                            <small><span>20</span><span>关注</span></small>
-                            <small><span>20</span><span>粉丝</span></small>
-                            <small><span>20</span><span>动态</span></small>
-                        </p>
-                    </div>
->>>>>>> Stashed changes
-
+                    <IndexHeaderRightUserDropdown class="dropdown"></IndexHeaderRightUserDropdown>
                 </template>
             </Dropdown>
             <li class="item avatarCopy via-gray-900"></li>
@@ -168,10 +147,11 @@ const avatarClassName = computed(() => {
             padding: .5rem;
             font-weight: 400;
 
-            &:hover>div>div:first-child>svg{
+            &:hover>div>div:first-child>svg {
                 animation: $textAnimation2;
             }
-            &>div>div:first-child>svg{
+
+            &>div>div:first-child>svg {
                 width: 1.3rem;
                 height: 1.3rem;
             }
