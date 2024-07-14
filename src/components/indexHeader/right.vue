@@ -76,6 +76,8 @@ const avatarClassName = computed(() => {
 })
 </script>
 <style scoped lang='scss'>
+@import '~/assets/css/textAnimation.scss';
+
 .right {
     width: 28%;
     flex-shrink: 0;
@@ -105,6 +107,11 @@ const avatarClassName = computed(() => {
             &>svg {
                 width: 1.3rem;
                 height: 1.3rem;
+
+                &:hover {
+
+                    animation: $textAnimation2;
+                }
             }
         }
 
@@ -166,6 +173,7 @@ const avatarClassName = computed(() => {
         svg {
             width: fit-content;
             height: 1.5rem;
+
         }
     }
 

@@ -70,8 +70,9 @@ const searchHistory = ref([])
 /**
  * 搜索框失去焦点
  */
-const inputBlur = () => {
-    setTimeout(() => {
+ let timer;
+ const inputBlur = () => {
+    timer= setTimeout(() => {
         if (keepShow.value) {
             inputBox.value.focus();
             keepShow.value = false;
@@ -85,7 +86,7 @@ const inputBlur = () => {
  */
 const inputFocus = () => {
     showSearch.value = true
-
+    clearTimeout(timer)
 }
 
 /**
@@ -143,7 +144,6 @@ onMounted(() => {
 </script>
 <style scoped lang='scss'>
 .center {
-    flex-shrink: 0;
     width: 28%;
     padding: .25rem;
     background-color: white; 
@@ -161,7 +161,7 @@ onMounted(() => {
     $bg: rgba($color: #fff, $alpha: 0.9);
     display: flex;
     align-items: center;
-    min-width: 0;
+
     height: 32px;
     // padding-left: .5rem;
 
@@ -172,7 +172,6 @@ onMounted(() => {
         background-color: #e3e5e7;
         outline: none;
         border-radius: .5rem;
-        min-width: 0;
     }
 
     &>div {
