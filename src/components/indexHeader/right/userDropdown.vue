@@ -20,15 +20,26 @@
             <dd>热播内容看不停</dd>
         </dl>
         <ul class="useInfo5">
-            <li><a href="#">
-                <svg-fold fillColor=''></svg-fold>
-            </a></li>
-            <li><a href="#">
-                <svg-fold fillColor=''></svg-fold>
-            </a></li>
-            <li><a href="#">
-                <svg-fold fillColor=''></svg-fold>
-            </a></li>
+            <li><a href="/">
+                    <p></p>
+                    <svg-fold fillColor=''></svg-fold>
+                </a></li>
+            <li><a href="/">
+                    <p></p>
+                    <svg-fold fillColor=''></svg-fold>
+                </a></li>
+            <li><a href="/">
+
+
+                    <multiLevelMenu>
+                        <template #f>
+                            <div class="flex items-center w-full justify-between">
+                                <p>推荐服务</p>
+                                <svg-fold fillColor=''></svg-fold>
+                            </div>
+                        </template>
+                    </multiLevelMenu>
+                </a></li>
         </ul>
     </div>
 </template>
@@ -38,11 +49,11 @@
 </script>
 
 <style scoped lang="scss">
-.userDropdown{
+.userDropdown {
     margin-top: 3rem;
     padding: 1rem 1.5rem;
 
-    &>*{
+    &>* {
         padding: 0 1.5rem;
     }
 
@@ -110,17 +121,17 @@
         }
     }
 
-    .useInfo4{
+    .useInfo4 {
         display: grid;
         grid-template: auto auto / auto auto;
         grid-auto-flow: dense;
         justify-content: space-between;
         align-items: center;
-        background-color: rgb(255,236,241);
+        background-color: rgb(255, 236, 241);
         border-radius: .5rem;
         padding: .5rem 1rem;
-        
-        dt{
+
+        dt {
             grid-row: 2 span;
             grid-column: 2 / 3;
             background-color: #fff;
@@ -131,26 +142,33 @@
             line-height: 1.75rem;
             color: var(--textColorPink);
         }
-        dd{
+
+        dd {
             grid-column: 1 / 2;
 
-            &:first-of-type{
+            &:first-of-type {
                 color: var(--textColorPink);
             }
 
-            &:last-child{
+            &:last-child {
                 color: var(--textColor2);
                 font-size: .75rem;
             }
         }
     }
 
-    .useInfo5{
-        svg{
+    .useInfo5 {
+        svg {
             fill: var(--textColor2);
             width: .75rem;
             height: .75rem;
             transform: rotateZ(-90deg);
+        }
+
+        li {
+            position: relative;
+
+             
         }
     }
 }

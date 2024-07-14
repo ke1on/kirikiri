@@ -1,6 +1,6 @@
 <template>
 
-    <div :class="dropdownContainerClassName" @mouseover="start" @mouseleave="over">
+    <div :class="dropdownContainerClassName" >
         <slot name="f"></slot>
         <div class="p" :style="{ 'top': avatar ? '50%' : '120%' }">
             <div v-if="animationDone">
@@ -15,8 +15,8 @@
 
 <script setup>
 const emit = defineEmits(['setAnimationStart'])
-const animationDone = ref(false)
-const props = defineProps(['data', 'avatar'])
+const animationDone = ref(true)
+const props = defineProps(['avatar'])
 const dropdownContainerClassName = computed(() => {
     return props.avatar ? 'dropdown-container dropdown-container-animation-start'
         : 'dropdown-container';
@@ -39,7 +39,7 @@ let start = () => {
 }
 const over = () => {
     animationDone.value = false
-    if (!props.avatar) { 
+    if (!props.avatar) {
         setTimeout(() => {
             start = startFnCopy;
         }, 300);
@@ -60,9 +60,8 @@ const over = () => {
     transform: translateX(-50%);
     width: fit-content;
     height: fit-content;
-    overflow: hidden;
     border-radius: .5rem;
-    box-shadow: 0 0 1rem rgba(0,0,0,.15);
+    box-shadow: 0 0 1rem rgba(0, 0, 0, .15);
 }
 
 .dropdown-container {

@@ -13,7 +13,7 @@
                     </div>
                 </template>
                 <template #c>
-                    <IndexHeaderRightUserDropdown class="dropdown"></IndexHeaderRightUserDropdown>
+                    <IndexHeader-rightUser-dropdown class="dropdown" />
                 </template>
             </Dropdown>
             <li class="item avatarCopy via-gray-900"></li>
@@ -145,7 +145,7 @@ const avatarClassName = computed(() => {
             flex-direction: column;
             cursor: pointer;
             padding: .5rem;
-            font-weight: 400;
+            font-weight: 400; 
 
             &:hover>div>div:first-child>svg {
                 animation: $textAnimation2;
