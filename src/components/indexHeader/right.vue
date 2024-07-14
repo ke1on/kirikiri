@@ -13,22 +13,7 @@
                     </div>
                 </template>
                 <template #c v-if="navList[0].animationDone">
-                    <div class="dropdown">
-                        <p class="useName">{{ 'Ke1on' }}</p>
-                        <p class="useInfo">
-                            <img src="~/assets/img/bigVip.avif" alt="">
-                            <svg-lv6 />
-                        </p>
-                        <p class="useInfo2">
-                            <small><span>硬币：</span>1688</small>
-                            <small><span>K币：</span>1688</small>
-                        </p>
-                        <p class="useInfo3">
-                            <small><span>20</span><span>关注</span></small>
-                            <small><span>20</span><span>粉丝</span></small>
-                            <small><span>20</span><span>动态</span></small>
-                        </p>
-                    </div>
+                    <IndexHeaderRightUserDropdown class="dropdown"></IndexHeaderRightUserDropdown>
 
                 </template>
             </Dropdown>
@@ -223,7 +208,6 @@ const avatarClassName = computed(() => {
 
 
 .dropdown {
-    margin-top: 3rem;
     display: flex;
     flex-direction: column;
     gap: .5rem;
@@ -231,68 +215,6 @@ const avatarClassName = computed(() => {
     padding: 1rem;
     background-color: white;
     animation: $textAnimation3;
-
-    .useName {
-        font-size: large;
-        font-weight: 400;
-        color: var(--textColorPink);
-        text-align: center;
-    }
-
-    .useInfo {
-        display: flex;
-        align-items: flex-end;
-        justify-content: center;
-        gap: 1rem;
-
-        img {
-            height: 1.5rem;
-            width: fit-content;
-            flex-shrink: 0;
-        }
-
-        svg {
-            width: fit-content;
-            height: 1.5rem;
-
-        }
-    }
-
-    .useInfo2 {
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-        color: var(--baseColor);
-        font-size: small;
-
-        span {
-            color: var(--textColor2);
-        }
-    }
-
-    .useInfo3 {
-        color: var(--baseColor);
-        font-size: larger;
-        display: flex;
-        justify-content: space-between;
-
-        small {
-            display: flex;
-            flex-direction: column;
-            text-align: center;
-            line-height: 100%;
-
-            span:nth-child(1) {
-                color: var(--baseColor);
-                font-size: large;
-                font-weight: 600;
-            }
-
-            span:nth-child(2) {
-                color: var(--textColor2);
-            }
-        }
-    }
 }
 
 img {

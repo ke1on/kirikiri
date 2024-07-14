@@ -59,6 +59,7 @@ const over = () => {
     height: fit-content;
     overflow: hidden;
     border-radius: .5rem;
+    box-shadow: 0 0 1rem rgba(0,0,0,.15);
 }
 
 .dropdown-container {
