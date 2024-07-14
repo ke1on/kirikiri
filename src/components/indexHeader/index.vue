@@ -20,8 +20,12 @@
     min-height: 180px;
     background: url('@/assets/img/header.avif') no-repeat center;
     background-size: cover;
-
+     *{
+        font-size: 0.8rem;
+    }
+    
     .content { 
+        padding: 0 1rem;
         display: flex;
         justify-content: space-between;
         align-items: center;

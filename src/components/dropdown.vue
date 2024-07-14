@@ -18,11 +18,12 @@ const dropdownContainerClassName = computed(() => {
 })
 
 let startFnCopy;
+let timer;
 let start = () => {
     startFnCopy = start;
     console.log(123)
 
-    setTimeout(() => {
+   timer= setTimeout(() => {
         emit('setAnimationDone', true)
 
     }, 500);
@@ -41,8 +42,7 @@ const over = () => {
 
         start = startFnCopy;
     }, 500);
-
-
+    clearTimeout(timer)
 }
 
 </script>

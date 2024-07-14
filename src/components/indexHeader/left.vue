@@ -34,6 +34,7 @@ const headerListLeft = [
     // width: fit-content;
     height: 100%;
      width: 35%;
+     flex-shrink: 0;
     align-items: center;
     li {
         color: white;

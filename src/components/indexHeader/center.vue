@@ -143,6 +143,7 @@ onMounted(() => {
 </script>
 <style scoped lang='scss'>
 .center {
+    flex-shrink: 0;
     width: 28%;
     padding: .25rem;
     background-color: white; 
@@ -160,7 +161,7 @@ onMounted(() => {
     $bg: rgba($color: #fff, $alpha: 0.9);
     display: flex;
     align-items: center;
-
+    min-width: 0;
     height: 32px;
     // padding-left: .5rem;
 
@@ -171,6 +172,7 @@ onMounted(() => {
         background-color: #e3e5e7;
         outline: none;
         border-radius: .5rem;
+        min-width: 0;
     }
 
     &>div {

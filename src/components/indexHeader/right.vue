@@ -1,8 +1,8 @@
 <template>
     <div class='right'>
         <ul>
-           
-            <dropdown   @setAnimationDone="setAnimationDone" @setAnimationStart="setAnimationStart"
+
+            <dropdown @setAnimationDone="setAnimationDone" @setAnimationStart="setAnimationStart"
                 :animationDone="animationDone" :animationStart="animationStart" :avatar="true">
                 <template #f>
                     <li :class="avatarClassName">
@@ -33,29 +33,29 @@
 
                 </template>
             </dropdown>
-                    <li class="item avatarCopy via-gray-900"></li>
+            <li class="item avatarCopy via-gray-900"></li>
             <li class="item">
-                <svg></svg>
+                <svg-bigVip></svg-bigVip>
                 <p>大会员</p>
             </li>
             <li class="item">
-                <svg></svg>
+                <svg-message></svg-message>
                 <p>消息</p>
             </li>
             <li class="item">
-                <svg></svg>
+                <svg-news></svg-news>
                 <p>动态</p>
             </li>
             <li class="item">
-                <svg></svg>
+                <svg-collect></svg-collect>
                 <p>收藏</p>
             </li>
             <li class="item">
-                <svg></svg>
+                <svg-history></svg-history>
                 <p>历史</p>
             </li>
             <li class="item">
-                <svg></svg>
+                <svg-invent></svg-invent>
                 <p>创作中心</p>
             </li>
         </ul>
@@ -66,7 +66,7 @@
 const animationDone = ref(false);
 const animationStart = ref(false);
 const setAnimationStart = (val) => {
-    animationStart.value = val 
+    animationStart.value = val
 }
 const setAnimationDone = (val) => {
     animationDone.value = val
@@ -78,8 +78,7 @@ const avatarClassName = computed(() => {
 <style scoped lang='scss'>
 .right {
     width: 28%;
-
-
+    flex-shrink: 0;
 
     ul {
         width: 100%;
@@ -96,12 +95,16 @@ const avatarClassName = computed(() => {
             display: flex;
             align-items: center;
             height: fit-content;
+            justify-content: center;
+            flex-direction: column;
             cursor: pointer;
             padding: .5rem;
             font-weight: 400;
 
+
             &>svg {
-                display: none;
+                width: 1.3rem;
+                height: 1.3rem;
             }
         }
 
