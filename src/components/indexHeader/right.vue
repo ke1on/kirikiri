@@ -187,15 +187,12 @@ const avatarClassName = computed(() => {
             padding: .5rem;
             font-weight: 400;
 
-
-            &>svg {
+            &:hover>div>div:first-child>svg{
+                animation: $textAnimation2;
+            }
+            &>div>div:first-child>svg{
                 width: 1.3rem;
                 height: 1.3rem;
-
-                &:hover {
-
-                    animation: $textAnimation2;
-                }
             }
         }
 
@@ -206,10 +203,10 @@ const avatarClassName = computed(() => {
 
         .avatar {
             height: 4rem;
-            width: 4rem;
+            aspect-ratio: 1;
             position: relative;
             z-index: 2;
-            transition: height 0.5s ease-out, width 0.4s ease-in-out;
+            transition: height 0.25s ease-out;
 
             &>img {
                 border: 2px solid white;
@@ -219,7 +216,6 @@ const avatarClassName = computed(() => {
 
         .avatarAnimationStart {
             height: 8rem;
-            width: 8rem;
         }
     }
 }
