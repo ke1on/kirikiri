@@ -1,45 +1,42 @@
 <template>
     <div class='right'>
-        <ul>
-
+        <ul> 
             <li>
-                <dropdown @setAnimationDone="setAnimationDone" @setAnimationStart="setAnimationStart"
-                :data="navList[0]" :avatar="true">
-                <template #f>
-                    <div :class="avatarClassName">
-                        <!-- <img src="~/assets/img/test.png" alt="avatar"> -->
-                        <NuxtImg class="img"
-                            src="http://ke1on.top:5999/%E4%B8%BA%E7%BE%8E%E5%A5%BD%E7%9A%84%E4%B8%96%E7%95%8C%E7%8C%AE%E4%B8%8A%E7%A5%9D%E7%A6%8F.jpg"
-                            loading="lazy"></NuxtImg>
+                <dropdown @setAnimationDone="setAnimationDone" @setAnimationStart="setAnimationStart" :data="navList[0]"
+                    :avatar="true">
+                    <template #f>
+                        <div :class="avatarClassName">
+                            <!-- <img src="~/assets/img/test.png" alt="avatar"> -->
+                            <NuxtImg class="img"
+                                src="http://ke1on.top:5999/%E4%B8%BA%E7%BE%8E%E5%A5%BD%E7%9A%84%E4%B8%96%E7%95%8C%E7%8C%AE%E4%B8%8A%E7%A5%9D%E7%A6%8F.jpg"
+                                loading="lazy"></NuxtImg>
 
-                    </div>
-                </template>
-                <template #c v-if="animationDone">
-                    <div class="dropdown">
-                        <p class="useName">{{ 'Ke1on' }}</p>
-                        <p class="useInfo">
-                            <img src="~/assets/img/bigVip.avif" alt="">
-                            <svg-lv6 />
-                        </p>
-                        <p class="useInfo2">
-                            <small><span>硬币：</span>1688</small>
-                            <small><span>K币：</span>1688</small>
-                        </p>
-                        <p class="useInfo3">
-                            <small><span>20</span><span>关注</span></small>
-                            <small><span>20</span><span>粉丝</span></small>
-                            <small><span>20</span><span>动态</span></small>
-                        </p>
-                    </div>
+                        </div>
+                    </template>
+                    <template #c v-if="navList[0].animationDone">
+                        <div class="dropdown">
+                            <p class="useName">{{ 'Ke1on' }}</p>
+                            <p class="useInfo">
+                                <img src="~/assets/img/bigVip.avif" alt="">
+                                <svg-lv6 />
+                            </p>
+                            <p class="useInfo2">
+                                <small><span>硬币：</span>1688</small>
+                                <small><span>K币：</span>1688</small>
+                            </p>
+                            <p class="useInfo3">
+                                <small><span>20</span><span>关注</span></small>
+                                <small><span>20</span><span>粉丝</span></small>
+                                <small><span>20</span><span>动态</span></small>
+                            </p>
+                        </div>
 
-                </template>
-            </dropdown>
+                    </template>
+                </dropdown>
             </li>
             <li class="item avatarCopy via-gray-900"></li>
             <li class="item">
-                <Dropdown>
-                    
-                </Dropdown>
+                
                 <svg-bigVip></svg-bigVip>
                 <p>大会员</p>
             </li>
@@ -68,26 +65,35 @@
 </template>
 
 <script setup>
-const animationDone = ref(false);
-const animationStart = ref(false);
-const setAnimationStart = (val) => {
-    animationStart.value = val
+// const animationDone = ref(false);
+// const animationStart = ref(false);
+const setAnimationStart = ({val,name}) => {  
+    navList.forEach(item => {
+        if (item.name === name) {
+            item.animationStart = val 
+        }
+    }) 
 }
-const setAnimationDone = (val) => {
-    animationDone.value = val
+const setAnimationDone = ({val,name}) => { 
+    navList.forEach(item => {
+        if (item.name === name) {
+            item.animationDone = val
+        }
+    })
 }
-const navList=reactive([
-    {name:'头像',animationDone:false,animationStart:false},
-    {name:'大会员',animationDone:false,animationStart:false},
-    {name:'消息',animationDone:false,animationStart:false},
-    {name:'动态',animationDone:false,animationStart:false},
-    {name:'收藏',animationDone:false,animationStart:false},
-    {name:'历史',animationDone:false,animationStart:false},
-    {name:'创作中心',animationDone:false,animationStart:false},
+const navList = reactive([
+    { name: '头像', animationDone: false, animationStart: false },
+    { name: '大会员', animationDone: false, animationStart: false },
+    { name: '消息', animationDone: false, animationStart: false },
+    { name: '动态', animationDone: false, animationStart: false },
+    { name: '收藏', animationDone: false, animationStart: false },
+    { name: '历史', animationDone: false, animationStart: false },
+    { name: '创作中心', animationDone: false, animationStart: false },
 ])
 const avatarClassName = computed(() => {
-    return animationStart.value ? 'item avatar avatarAnimationStart' : 'item avatar '
+    return navList[0].animationStart ? 'item avatar avatarAnimationStart' : 'item avatar '
 })
+
 </script>
 <style scoped lang='scss'>
 @import '~/assets/css/textAnimation.scss';

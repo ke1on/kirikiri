@@ -12,7 +12,7 @@
 
 <script setup>
 const emit = defineEmits(['setAnimationDone', 'setAnimationStart'])
-const props = defineProps(['animationDone', 'animationStart', 'avatar'])
+const props = defineProps(['data', 'avatar'])
 const dropdownContainerClassName = computed(() => {
     return props.avatar ? 'dropdown-container dropdown-container-animation-start' : 'dropdown-container'
 })
@@ -23,21 +23,21 @@ let start = () => {
     startFnCopy = start;
     console.log(123)
 
-   timer= setTimeout(() => {
-        emit('setAnimationDone', true)
+   timer= setTimeout(() => { 
+        emit('setAnimationDone', {val:true,name:props.data.name})
 
     }, 500);
     try {
-
-        emit('setAnimationStart', true)
+        console.log(props.data)
+        emit('setAnimationStart', {val:true,name:props.data.name})
     } catch (error) { }
     start = () => { }
 }
 const over = () => {
     try {
-        emit('setAnimationStart', false)
+        emit('setAnimationStart', {val:false,name:props.data.name})
     } catch (error) { }
-    emit('setAnimationDone', false)
+    emit('setAnimationDone', {val:false,name:props.data.name})
     setTimeout(() => {
 
         start = startFnCopy;
