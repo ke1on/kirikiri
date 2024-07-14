@@ -9,5 +9,16 @@
         transform: translateY(-20%); 
     }
 }
+@keyframes onmounted {
+    0% {
+        opacity: .8;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
 $textAnimation:.2s ease-out AnimationText;
 $textAnimation2:.2s ease-out AnimationText2;
+$textAnimation3:.4s ease-out onmounted;

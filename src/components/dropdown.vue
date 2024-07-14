@@ -2,7 +2,7 @@
 
     <div :class="dropdownContainerClassName" @mouseover="start" @mouseleave="over">
         <slot name="f"></slot>
-        <div class="p">
+        <div class="p" :style="{ 'top': avatar ? '50%' : '120%' }">
             <slot name="c"></slot>
         </div>
     </div>
@@ -16,40 +16,41 @@ const props = defineProps(['data', 'avatar'])
 const dropdownContainerClassName = computed(() => {
     return props.avatar ? 'dropdown-container dropdown-container-animation-start' : 'dropdown-container'
 })
-
 let startFnCopy;
 let timer;
 let start = () => {
     startFnCopy = start;
-    console.log(123)
-
-   timer= setTimeout(() => { 
-        emit('setAnimationDone', {val:true,name:props.data.name})
-
-    }, 500);
+    if (!props.avatar) {
+        emit('setAnimationDone', { val: true, name: props.data.name })
+    } else {
+        timer = setTimeout(() => {
+            emit('setAnimationDone', { val: true, name: props.data.name })
+        }, 300);
+    }
     try {
-        console.log(props.data)
-        emit('setAnimationStart', {val:true,name:props.data.name})
+        emit('setAnimationStart', { val: true, name: props.data.name })
     } catch (error) { }
     start = () => { }
 }
 const over = () => {
     try {
-        emit('setAnimationStart', {val:false,name:props.data.name})
+        emit('setAnimationStart', { val: false, name: props.data.name })
     } catch (error) { }
-    emit('setAnimationDone', {val:false,name:props.data.name})
-    setTimeout(() => {
-
+    emit('setAnimationDone', { val: false, name: props.data.name })
+    if (!props.avatar) {
+        setTimeout(() => {
+            start = startFnCopy;
+        }, 300);
+    } else {
         start = startFnCopy;
-    }, 500);
+    }
     clearTimeout(timer)
-}
-
+} 
 </script>
 <style scoped lang='scss'>
 .p {
     z-index: 1;
-    top: 50%;
+    top: 100%;
     left: 50%;
     background-color: white;
     position: absolute;
@@ -58,7 +59,6 @@ const over = () => {
     height: fit-content;
     overflow: hidden;
     border-radius: .5rem;
-
 }
 
 .dropdown-container {
