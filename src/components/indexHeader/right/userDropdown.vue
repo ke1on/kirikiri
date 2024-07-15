@@ -37,7 +37,7 @@
 const menuList = ref([
     {
         label: '直播中心',
-        icon: 'user',
+        icon: '',
         children: [
             { label: 'test' }
         ]

@@ -5,18 +5,18 @@
             <div class="flex items-center w-full justify-between px-4">
                 <p class="flex gap-1 items-center">
                     <svgAll :name='titleIcon' size="1.5rem" fillColor="var(--textColor1)" />
-                    <p>{{ title }}</p>
+                <p>{{ title }}</p>
                 </p>
 
                 <svgAll name='fold' size="1.5rem" fillColor="var(--baseColor)" v-if="needIcon" />
             </div>
         </slot>
-        <slot name="c"  v-if="menuList.length">
-            <div :class="calssName" v-if="showMore" >
+        <slot name="c" v-if="menuList.length">
+            <div :class="calssName" v-if="showMore">
                 <div v-for="(i, index) in menuList" class="flex gap-1 items-center px-2 py-1 cursor-pointer ">
                     <svgAll :name='i.icon' fillColor="var(--baseColor)"></svgAll>
                     <span class="flex-shrink-0">{{ i.label }}</span>
-                </div> 
+                </div>
             </div>
         </slot>
     </div>
@@ -26,10 +26,10 @@
 const showMore = ref(false)
 const props = defineProps({
     direction: { default: 'r', type: String },
-    menuList: { type: Array, required: true,default:[] },
+    menuList: { type: Array,  default: [] },
     needIcon: { type: Boolean, default: true },
     title: { type: String, default: '推荐服务' },
-    titleIcon:{type: String, default: 'manuscript'}
+    titleIcon: { type: String, default: 'manuscript' }
 })
 const calssName = computed(() => {
     let a = props.direction.toString().toLocaleUpperCase()
@@ -37,8 +37,8 @@ const calssName = computed(() => {
 })
 </script>
 <style scoped lang='scss'>
-.multiLevelMenuContainer { 
-    position: absolute; 
+.multiLevelMenuContainer {
+    position: absolute;
     z-index: 999;
     background-color: white;
     border-radius: .5rem;
@@ -48,6 +48,12 @@ const calssName = computed(() => {
     min-width: 8rem;
     gap: .5rem;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, .3);
+
+    &>div:hover {
+        border-radius: .5rem;
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.1);
+    }
 }
 
 .directionL {
