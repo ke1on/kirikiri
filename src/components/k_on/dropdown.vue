@@ -1,7 +1,7 @@
 <template>
 
-    <!-- <div :class="dropdownContainerClassName" @mouseover="start" @mouseleave="over"> -->
-        <div :class="dropdownContainerClassName">
+    <div :class="dropdownContainerClassName" @mouseover="start" @mouseleave="over">
+        <!-- <div :class="dropdownContainerClassName"> -->
         <slot name="f"></slot>
         <div class="p" :style="{ 'top': avatar ? '50%' : '120%' }">
             <div v-if="animationDone">
@@ -16,7 +16,7 @@
 
 <script setup>
 const emit = defineEmits(['setAnimationStart'])
-const animationDone = ref(true)
+const animationDone = ref(false)
 const props = defineProps(['avatar'])
 const dropdownContainerClassName = computed(() => {
     return props.avatar ? 'dropdown-container dropdown-container-animation-start'

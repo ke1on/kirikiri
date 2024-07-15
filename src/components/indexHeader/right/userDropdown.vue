@@ -29,7 +29,7 @@
                     <svgAll name='fold' size="1.5rem" fillColor="var(--baseColor)" />
                 </a></li>
             <li>
-                <multiLevelMenu :menuList="menuList">
+                <kon-multiLevelMenu :menuList="menuList">
                     <template #f>
                         <div class="flex items-center w-full justify-between px-4">
                             <p>推荐服务</p>
@@ -39,7 +39,7 @@
                     <template #c>
 
                     </template>
-                </multiLevelMenu>
+                </kon-multiLevelMenu>
             </li>
         </ul>
     </div>
