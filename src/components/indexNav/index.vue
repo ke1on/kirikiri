@@ -26,7 +26,7 @@
         <div class="line"></div>
         <!-- 右侧 -->
 
-        <ul class="w-[20%] flex-shrink-0 grid gap-2 grid-cols-2 grid-rows-3">
+        <ul class="w-[20%] flex-shrink-0 grid gap-2 grid-cols-3 grid-rows-2 ">
             <li v-for="(i, index) in rightList" class="">
                 <div class="flex gap-1 items-center text-sm text-[var(--baseColor)]">
                     <svgAll :name="i.icon" fillColor="var(--baseColor"></svgAll>
