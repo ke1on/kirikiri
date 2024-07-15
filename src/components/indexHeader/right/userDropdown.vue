@@ -21,25 +21,13 @@
         </dl>
         <ul class="useInfo5">
             <li><a href="/">
-                    <p></p>
-                    <svgAll name='fold' size="1.5rem" fillColor="var(--baseColor)" /> 
+                    <kon-multiLevelMenu title="个人中心" titleIcon="user"></kon-multiLevelMenu>
                 </a></li>
             <li><a href="/">
-                    <p></p>
-                    <svgAll name='fold' size="1.5rem" fillColor="var(--baseColor)" />
+                    <kon-multiLevelMenu title="稿件管理" titleIcon="manuscript"></kon-multiLevelMenu>
                 </a></li>
             <li>
-                <kon-multiLevelMenu :menuList="menuList">
-                    <template #f>
-                        <div class="flex items-center w-full justify-between px-4">
-                            <p>推荐服务</p>
-                            <svgAll name='fold' size="1.5rem" fillColor="var(--baseColor)" />
-                        </div>
-                    </template>
-                    <template #c>
-
-                    </template>
-                </kon-multiLevelMenu>
+                <kon-multiLevelMenu :menuList="menuList" title="推荐服务" titleIcon="collect"></kon-multiLevelMenu>
             </li>
         </ul>
     </div>
@@ -48,18 +36,24 @@
 <script setup>
 const menuList = ref([
     {
-        label: '个人中心',
+        label: '直播中心',
+        icon: 'user',
         children: [
             { label: 'test' }
         ]
     },
     {
-        label: '投稿管理',
+        label: '我的课程',
+        icon: '',
     },
     {
-        label: '推荐服务'
+        label: 'K币钱包',
+        icon: '',
     },
-
+    {
+        label: '订单中心',
+        icon: '',
+    },
 ])
 </script>
 
@@ -172,11 +166,18 @@ const menuList = ref([
     }
 
     .useInfo5 {
-        
+        font-weight: 200;
+
 
         li {
             position: relative;
+            padding: .6rem 0;
+            border-radius: .5rem;
 
+            &:hover {
+                cursor: pointer;
+                background-color: rgba(0, 0, 0, 0.125);
+            }
         }
     }
 }

@@ -10,6 +10,7 @@
 <script setup>
 const props = defineProps({
     fillColor: { type: String, default: 'white' },
+    
 })
 </script>
 <style scoped lang='scss'></style>

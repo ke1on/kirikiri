@@ -12,6 +12,8 @@
     <svg-message :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'message'" />
     <svg-news :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'news'" />
     <svg-search :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'search'" />
+    <svg-user :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'user'" />
+    <svg-manuscript :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'manuscript'" />
 </template>
 
 <script setup>
