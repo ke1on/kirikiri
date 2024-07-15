@@ -14,6 +14,12 @@
     <svg-search :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'search'" />
     <svg-user :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'user'" />
     <svg-manuscript :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'manuscript'" />
+    <svg-document :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'document'" />
+    <svg-flag :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'flag'" />
+    <svg-chat :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'chat'" />
+    <svg-camera :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'camera'" />
+    <svg-smile :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'smile'" />
+    <svg-music :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'music'" />
 </template>
 
 <script setup>

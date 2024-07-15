@@ -1,5 +1,5 @@
 <template>
-    <div class='indexNav px-40 py-4 flex items-center h-[8rem] justify-between '>
+    <div class='indexNav px-40 py-4 flex items-center h-[7rem] justify-between '>
         <!-- 左侧 -->
         <div class="left flex  gap-4 w-[10%]">
             <div class="flex flex-col items-center">
@@ -28,9 +28,9 @@
 
         <ul class="w-[20%] flex-shrink-0 grid gap-2 grid-cols-3 grid-rows-2 ">
             <li v-for="(i, index) in rightList" class="">
-                <div class="flex gap-1 items-center text-sm text-[var(--baseColor)]">
-                    <svgAll :name="i.icon" fillColor="var(--baseColor"></svgAll>
-                    <p>{{ i.name }}</p>
+                <div class="flex gap-1 items-center text-sm text-[var(--baseColor)] ">
+                    <svgAll :name="i.icon" :size="i.size" fillColor="var(--textColor1)"></svgAll>
+                    <p class="text-[var(--textColor1)] p-2">{{ i.name }}</p>
                 </div>
             </li>
         </ul>
@@ -72,12 +72,12 @@ const centerList = ref([
     ]
 ])
 const rightList = ref([
-    { name: '专栏', icon: '', path: '/' },
-    { name: '活动', icon: '', path: '/' },
-    { name: '社区中心', icon: '', path: '/' },
-    { name: '直播', icon: '', path: '/' },
-    { name: '课堂', icon: '', path: '/' },
-    { name: '新歌热榜', icon: '', path: '/' },
+    { name: '专栏', icon: 'document', size:'1.5rem', path: '/' },
+    { name: '活动', icon: 'flag', size:'1.5rem', path: '/' },
+    { name: '社区中心', icon: 'chat', size:'1.5rem', path: '/' },
+    { name: '直播', icon: 'camera', size:'1.5rem', path: '/' },
+    { name: '课堂', icon: 'smile', size:'1.5rem', path: '/' },
+    { name: '新歌热榜', icon: 'music', size:'1.5rem', path: '/' },
 ])
 </script>
 <style scoped lang='scss'>
