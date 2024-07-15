@@ -22,30 +22,49 @@
         <ul class="useInfo5">
             <li><a href="/">
                     <p></p>
-                    <svg-fold fillColor=''></svg-fold>
+                    <!-- <SvgFold fillColor="var(--baseColor)"></SvgFold>  -->
                 </a></li>
             <li><a href="/">
                     <p></p>
-                    <svg-fold fillColor=''></svg-fold>
+                    <SvgFold fillColor="var(--baseColor)"></SvgFold> 
                 </a></li>
-            <li><a href="/">
+            <li>
+                <multiLevelMenu>
+                    <template #f>
+                        <div class="flex items-center w-full justify-between px-4">
+                            <p>推荐服务</p>
+                             
 
-
-                    <multiLevelMenu>
-                        <template #f>
-                            <div class="flex items-center w-full justify-between">
-                                <p>推荐服务</p>
-                                <svg-fold fillColor=''></svg-fold>
-                            </div>
-                        </template>
-                    </multiLevelMenu>
-                </a></li>
+                        </div>
+                    </template>
+                    <template #c>
+                        <div v-for="(i, index) in menuList" class="flex gap-1 items-center px-2 py-1 cursor-pointer ">
+                            <svg-bigVip fillColor="var(--baseColor)" class="flex-shrink-0"></svg-bigVip>
+                            <span class="flex-shrink-0">{{ i.label }}</span>
+                        </div>
+                    </template>
+                </multiLevelMenu>
+            </li>
         </ul>
     </div>
 </template>
 
 <script setup>
+const menuList = ref([
+    {
+        label: '个人中心',
+        children: [
+            { label: 'test' }
+        ]
+    },
+    {
+        label: '投稿管理',
+    },
+    {
+        label: '推荐服务'
+    },
 
+])
 </script>
 
 <style scoped lang="scss">
@@ -53,9 +72,7 @@
     margin-top: 3rem;
     padding: 1rem 1.5rem;
 
-    &>* {
-        padding: 0 1.5rem;
-    }
+
 
     .useName {
         font-size: large;
@@ -100,6 +117,7 @@
         font-size: larger;
         display: flex;
         justify-content: space-between;
+        padding: 0 1.5rem;
 
         small {
             display: flex;
@@ -158,17 +176,13 @@
     }
 
     .useInfo5 {
-        svg {
-            fill: var(--textColor2);
-            width: .75rem;
-            height: .75rem;
-            transform: rotateZ(-90deg);
+        svg { 
+            width: 1.5rem;
+            height: 1.5rem; 
         }
-
         li {
             position: relative;
 
-             
         }
     }
 }

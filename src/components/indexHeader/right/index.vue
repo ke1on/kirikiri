@@ -8,7 +8,7 @@
                         <!-- <img src="~/assets/img/test.png" alt="avatar"> -->
                         <NuxtImg class="img"
                             src="http://ke1on.top:5999/%E4%B8%BA%E7%BE%8E%E5%A5%BD%E7%9A%84%E4%B8%96%E7%95%8C%E7%8C%AE%E4%B8%8A%E7%A5%9D%E7%A6%8F.jpg"
-                            loading="lazy"></NuxtImg>
+                              alt="Avatar"></NuxtImg>
 
                     </div>
                 </template>

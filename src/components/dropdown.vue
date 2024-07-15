@@ -1,6 +1,7 @@
 <template>
 
-    <div :class="dropdownContainerClassName" >
+    <!-- <div :class="dropdownContainerClassName" @mouseover="start" @mouseleave="over"> -->
+        <div :class="dropdownContainerClassName">
         <slot name="f"></slot>
         <div class="p" :style="{ 'top': avatar ? '50%' : '120%' }">
             <div v-if="animationDone">

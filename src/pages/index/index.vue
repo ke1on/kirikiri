@@ -1,6 +1,7 @@
 <!-- 首页 -->
 <template>
-    <IndexHeader></IndexHeader> 
+    <IndexHeader /> 
+    <IndexNav /> 
 </template>
 
 <script setup>
