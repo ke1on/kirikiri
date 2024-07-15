@@ -22,26 +22,22 @@
         <ul class="useInfo5">
             <li><a href="/">
                     <p></p>
-                    <!-- <SvgFold fillColor="var(--baseColor)"></SvgFold>  -->
+                    <svgAll name='fold' size="1.5rem" fillColor="var(--baseColor)" /> 
                 </a></li>
             <li><a href="/">
                     <p></p>
-                    <SvgFold fillColor="var(--baseColor)"></SvgFold> 
+                    <svgAll name='fold' size="1.5rem" fillColor="var(--baseColor)" />
                 </a></li>
             <li>
-                <multiLevelMenu>
+                <multiLevelMenu :menuList="menuList">
                     <template #f>
                         <div class="flex items-center w-full justify-between px-4">
                             <p>推荐服务</p>
-                             
-
+                            <svgAll name='fold' size="1.5rem" fillColor="var(--baseColor)" />
                         </div>
                     </template>
                     <template #c>
-                        <div v-for="(i, index) in menuList" class="flex gap-1 items-center px-2 py-1 cursor-pointer ">
-                            <svg-bigVip fillColor="var(--baseColor)" class="flex-shrink-0"></svg-bigVip>
-                            <span class="flex-shrink-0">{{ i.label }}</span>
-                        </div>
+
                     </template>
                 </multiLevelMenu>
             </li>
@@ -176,10 +172,8 @@ const menuList = ref([
     }
 
     .useInfo5 {
-        svg { 
-            width: 1.5rem;
-            height: 1.5rem; 
-        }
+        
+
         li {
             position: relative;
 

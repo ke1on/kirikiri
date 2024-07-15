@@ -1,5 +1,6 @@
 <template>
     <div class='indexNav'>
+        <!-- 左侧 -->
         <div class="left flex justify-between gap-4">
             <div class="flex flex-col items-center">
                 <img class="w-[3rem] aspect-square rounded-full"
@@ -13,8 +14,8 @@
                 <p class="text-sm mt-1">热门</p>
             </div>
         </div> 
-        <ul>
-            <li>
+        <ul class="center">
+            <li>    
                 
             </li>
         </ul> 
@@ -23,7 +24,9 @@
 </template>
 
 <script setup>
-
+    const centerList=ref([
+        {name:'番剧',path:'/'}
+    ])
 </script>
 <style scoped lang='scss'>
 .indexNav {
