@@ -1,24 +1,24 @@
 <template>
     <div class='right'>
         <ul>
-            <kon-fropdown @setAnimationStart="setAnimationStart" :avatarAnimationStart="avatarAnimationStart"
+            <kon-dropdown @setAnimationStart="setAnimationStart" :avatarAnimationStart="avatarAnimationStart"
                 :avatar="true">
                 <template #f>
                     <div :class="avatarClassName">
                         <!-- <img src="~/assets/img/test.png" alt="avatar"> -->
                         <NuxtImg class="img"
                             src="http://ke1on.top:5999/%E4%B8%BA%E7%BE%8E%E5%A5%BD%E7%9A%84%E4%B8%96%E7%95%8C%E7%8C%AE%E4%B8%8A%E7%A5%9D%E7%A6%8F.jpg"
-                              alt="Avatar"></NuxtImg>
+                            loading="lazy"></NuxtImg>
 
                     </div>
                 </template>
                 <template #c>
                     <IndexHeader-rightUser-dropdown class="dropdown" />
                 </template>
-            </kon-fropdown>
+            </kon-dropdown>
             <li class="item avatarCopy via-gray-900"></li>
             <li class="item">
-                <kon-fropdown>
+                <kon-dropdown>
                     <template #f>
                         <div class="flex flex-col items-center">
                             <svg-bigVip></svg-bigVip>
@@ -31,11 +31,11 @@
                         </div>
 
                     </template>
-                </kon-fropdown>
+                </kon-dropdown>
 
             </li>
             <li class="item">
-                <kon-fropdown>
+                <kon-dropdown>
                     <template #f>
                         <div class="flex flex-col items-center">
                             <svg-message></svg-message>
@@ -46,11 +46,11 @@
                         1231321231
 
                     </template>
-                </kon-fropdown>
+                </kon-dropdown>
             </li>
             <li class="item">
 
-                <kon-fropdown>
+                <kon-dropdown>
                     <template #f>
                         <div class="flex flex-col items-center">
                             <svg-news></svg-news>
@@ -61,10 +61,10 @@
                         1231321231
 
                     </template>
-                </kon-fropdown>
+                </kon-dropdown>
             </li>
             <li class="item">
-                <kon-fropdown>
+                <kon-dropdown>
                     <template #f>
                         <div class="flex flex-col items-center">
                             <svg-collect></svg-collect>
@@ -74,10 +74,10 @@
                     <template #c>
                         asdadsasdsadad
                     </template>
-                </kon-fropdown>
+                </kon-dropdown>
             </li>
             <li class="item">
-                <kon-fropdown>
+                <kon-dropdown>
                     <template #f>
                         <div class="flex flex-col items-center">
                             <svg-history></svg-history>
@@ -87,10 +87,10 @@
                     <template #c>
                         123123
                     </template>
-                </kon-fropdown>
+                </kon-dropdown>
             </li>
             <li class="item">
-                <kon-fropdown>
+                <kon-dropdown>
                     <template #f>
                         <div class="flex flex-col items-center">
                             <svg-invent></svg-invent>
@@ -100,7 +100,7 @@
                     <template #c>
                         1233123131
                     </template>
-                </kon-fropdown>
+                </kon-dropdown>
             </li>
         </ul>
     </div>
