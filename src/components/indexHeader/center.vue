@@ -196,14 +196,13 @@ onMounted(() => {
     width: calc(100%);
     left: 0;
     padding: .5rem;
-    background-color: #fff;
-    position: relative;
+    background-color: #fff; 
     display: flex;
     flex-direction: column;
     gap: .5rem;
     position: absolute;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-
+    z-index: 9999 ;
     .title {
         display: flex;
         justify-content: space-between;

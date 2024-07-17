@@ -1,10 +1,14 @@
 <!-- 首页 -->
 <template>
     <IndexHeader /> 
-    <IndexNav /> 
+    <div class="px-40">
+        <IndexNav />
+        <indexContainer />
+    </div>
 </template>
 
 <script setup>
+
 </script>
 <style scoped>
 body {

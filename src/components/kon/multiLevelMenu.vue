@@ -1,5 +1,5 @@
 <template>
-    <div class="multiLevelMenu" @mouseover="showMore = true" @mouseleave="showMore = false">
+    <div class="multiLevelMenu relative" @mouseover="showMore = true" @mouseleave="showMore = false">
         <!-- <div class="multiLevelMenu" > -->
         <slot name="f">
             <div class="flex items-center w-full justify-between px-4">
@@ -14,7 +14,7 @@
         <slot name="c" v-if="menuList.length">
             <div :class="calssName" v-if="showMore">
                 <div v-for="(i, index) in menuList" class="flex gap-1 items-center px-2 py-1 cursor-pointer ">
-                    <svgAll :name='i.icon' fillColor="var(--baseColor)"></svgAll>
+                    <svgAll :name='i.icon' fillColor="var(--baseColor)" v-if="i.icon"></svgAll>
                     <span class="flex-shrink-0">{{ i.label }}</span>
                 </div>
             </div>
@@ -29,11 +29,11 @@ const props = defineProps({
     menuList: { type: Array,  default: [] },
     needIcon: { type: Boolean, default: true },
     title: { type: String, default: '推荐服务' },
-    titleIcon: { type: String, default: 'manuscript' }
+    titleIcon: { type: String, default: 'manuscript' }, 
 })
 const calssName = computed(() => {
     let a = props.direction.toString().toLocaleUpperCase()
-    return 'multiLevelMenuContainer ' + 'direction' + a
+    return 'multiLevelMenuContainer ' + 'direction' + a  
 })
 </script>
 <style scoped lang='scss'>
@@ -69,12 +69,14 @@ const calssName = computed(() => {
 
 .directionT {
     bottom: 100%;
+    left: 50%;
     transform: translateX(-50%);
 
 }
 
-.directionB {
-    transform: translateX(-50%);
+.directionB { 
+   left: 50%;
+   transform: translateX(-50%);
     top: 100%;
 }
 </style>
