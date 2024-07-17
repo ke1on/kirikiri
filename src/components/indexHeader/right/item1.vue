@@ -21,13 +21,17 @@
         </dl>
         <ul class="useInfo5">
             <li><a href="/">
-                    <kon-multiLevelMenu title="个人中心" titleIcon="user"></kon-multiLevelMenu>
+                    <kon-multiLevelMenu title="个人中心" titleIcon="user" :needIcon='false'></kon-multiLevelMenu>
                 </a></li>
             <li><a href="/">
-                    <kon-multiLevelMenu title="稿件管理" titleIcon="manuscript"></kon-multiLevelMenu>
+                    <kon-multiLevelMenu title="稿件管理" titleIcon="manuscript" :needIcon='false'></kon-multiLevelMenu>
                 </a></li>
             <li>
                 <kon-multiLevelMenu :menuList="menuList" title="推荐服务" titleIcon="collect"></kon-multiLevelMenu>
+            </li>
+            <li class="line"></li>
+            <li> 
+                <kon-multiLevelMenu title="退出登录" titleIcon="logout" :needIcon='false'></kon-multiLevelMenu>
             </li>
         </ul>
     </div>
@@ -58,6 +62,14 @@ const menuList = ref([
 </script>
 
 <style scoped lang="scss">
+.line {
+    width: calc(100% - 2rem);
+    margin-left: .5rem;
+    height: 1px;
+    background-color: var(--textColor3);
+    padding: 0 !important;
+}
+
 .userDropdown {
     margin-top: 3rem;
     padding: 1rem 1.5rem;
@@ -178,6 +190,13 @@ const menuList = ref([
                 cursor: pointer;
                 background-color: rgba(0, 0, 0, 0.125);
             }
+        }
+
+        .logout {
+            display: flex;
+            padding-left: 1rem;
+            align-items: center;
+
         }
     }
 }

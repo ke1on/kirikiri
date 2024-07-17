@@ -1,12 +1,4 @@
 <template>
-  <div id="app">
-    <NuxtPage></NuxtPage>
-  </div>
+  <NuxtPage></NuxtPage>
 </template>
-<style>
-#app {
-  min-width: 720px;
-  height: 100vh;  
-}
-
-</style>
+<style></style>

@@ -4,9 +4,18 @@
 
 *:root {
     --baseColor: #18191C;
-    --textColorPink:#FF538E;
+    --textColorPink: #FF538E;
+    --textColorPink2: #FB7199;
+    --bgPink: #FFECF1;
     --textColor1: #61666D;
     --textColor2: #9499A0;
-    --textColor3: #C9CCD0; 
+    --textColor3: #C9CCD0;
     color: var(--baseColor);
+}
+
+body {
+    min-width: 1100px;
+
+    font-family:-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif!important;
+
 }

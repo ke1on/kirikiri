@@ -21,14 +21,20 @@
         <svg-camera :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'camera'" />
         <svg-smile :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'smile'" />
         <svg-music :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'music'" />
+        <svg-logout :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'logout'" />
+        <svg-bigVipContent1 :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'bigVipContent1'" />
+        <svg-bigVipContent2 :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'bigVipContent2'" />
+        <svg-bigVipContent3 :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'bigVipContent3'" />
+        <svg-bigVipContent4 :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'bigVipContent4'" />
     </div>
 </template>
 
 <script setup>
 const props = defineProps({
-    fillColor: { type: String, default: 'white' },
+    fillColor: { type: String,  },
     name: { type: String, default: 'bigVip' },
     size: { type: String, default: '1rem' },
 })
+provide('name',props.name);
 </script>
 <style scoped lang='scss'></style>
