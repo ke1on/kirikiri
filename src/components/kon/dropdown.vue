@@ -3,9 +3,16 @@
     <div :class="dropdownContainerClassName" @mouseover="start" @mouseleave="over">
         <!-- <div :class="dropdownContainerClassName"> -->
         <slot name="f"></slot>
-        <div class="p" :style="{ 'top': avatar ? '50%' : '120%' }">
-            <div v-if="animationDone">
-                <slot name="c"></slot>
+        <div class="p" :style="{ 'top': avatar ? '50%' : '100%' }">
+            <div v-if="animationDone && avatar">
+                <div class="bg-white rounded-lg">
+                    <slot name="c"></slot>
+                </div>
+            </div>
+            <div v-if="animationDone && !avatar" class=" pt-2">
+                <div class="bg-white rounded-lg">
+                    <slot name="c"></slot>
+                </div>
             </div>
 
         </div>
@@ -56,7 +63,6 @@ const over = () => {
     z-index: 1;
     top: 100%;
     left: 50%;
-    background-color: white;
     position: absolute;
     transform: translateX(-50%);
     width: fit-content;

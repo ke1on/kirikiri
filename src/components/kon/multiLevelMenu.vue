@@ -13,9 +13,12 @@
         </slot>
         <slot name="c" v-if="menuList.length">
             <div :class="calssName" v-if="showMore">
-                <div v-for="(i, index) in menuList" class="flex gap-1 items-center px-2 py-1 cursor-pointer ">
-                    <svgAll :name='i.icon' fillColor="var(--baseColor)" v-if="i.icon"></svgAll>
-                    <span class="flex-shrink-0">{{ i.label }}</span>
+
+                <div>
+                    <div v-for="(i, index) in menuList" class="flex gap-1 items-center px-2 py-1 cursor-pointer">
+                        <svgAll :name='i.icon' fillColor="var(--baseColor)" v-if="i.icon"></svgAll>
+                        <span class="flex-shrink-0">{{ i.label }}</span>
+                    </div>
                 </div>
             </div>
         </slot>
@@ -26,34 +29,40 @@
 const showMore = ref(false)
 const props = defineProps({
     direction: { default: 'r', type: String },
-    menuList: { type: Array,  default: [] },
+    menuList: { type: Array, default: [] },
     needIcon: { type: Boolean, default: true },
     title: { type: String, default: '推荐服务' },
-    titleIcon: { type: String, default: 'manuscript' }, 
+    titleIcon: { type: String, default: 'manuscript' },
 })
 const calssName = computed(() => {
     let a = props.direction.toString().toLocaleUpperCase()
-    return 'multiLevelMenuContainer ' + 'direction' + a  
+    return 'multiLevelMenuContainer  ' + 'direction' + a
 })
 </script>
 <style scoped lang='scss'>
 .multiLevelMenuContainer {
+    padding: .5rem .5rem;
     position: absolute;
     z-index: 999;
-    background-color: white;
-    border-radius: .5rem;
-    padding: .5rem;
-    display: flex;
-    flex-direction: column;
-    min-width: 8rem;
-    gap: .5rem;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, .3);
+    background-color: transparent;
 
-    &>div:hover {
+    &>div {
+        background-color: white;
         border-radius: .5rem;
-        cursor: pointer;
-        background-color: rgba(0, 0, 0, 0.1);
+        padding: .5rem;
+        display: flex;
+        flex-direction: column;
+        min-width: 8rem;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, .3);
+
+        &>div:hover {
+            border-radius: .25rem;
+            cursor: pointer;
+            background-color: rgb(236, 236, 236);
+        }
     }
+
+
 }
 
 .directionL {
@@ -74,9 +83,9 @@ const calssName = computed(() => {
 
 }
 
-.directionB { 
-   left: 50%;
-   transform: translateX(-50%);
+.directionB {
+    left: 50%;
+    transform: translateX(-50%);
     top: 100%;
 }
 </style>

@@ -31,10 +31,10 @@
                 </kon-dropdown>
 
             </li>
-            <li class="item"> 
+            <li class="item">
                 <kon-multiLevelMenu :menuList="messageList" direction="b" class="text-[var(--baseColor)]">
                     <template #f>
-                        <div class="flex flex-col items-center">
+                        <div class="flex flex-col items-center cursor-pointer">
                             <svg-message></svg-message>
                             <p class="text-white">消息</p>
                         </div>
@@ -45,20 +45,20 @@
 
                 <kon-dropdown>
                     <template #f>
-                        <div class="flex flex-col items-center">
+                        <div class="flex flex-col items-center cursor-pointer">
                             <svg-news></svg-news>
                             <p>动态</p>
                         </div>
                     </template>
-                    <template #c> 
-                        <IndexHeader-right-item3 class="dropdown" style="width: 15rem;" />
+                    <template #c>
+                        <IndexHeader-right-item3 class="dropdown" style="width: 25rem;" />
                     </template>
                 </kon-dropdown>
             </li>
             <li class="item">
                 <kon-dropdown>
                     <template #f>
-                        <div class="flex flex-col items-center">
+                        <div class="flex flex-col items-center cursor-pointer">
                             <svg-collect></svg-collect>
                             <p>收藏</p>
                         </div>
@@ -71,7 +71,7 @@
             <li class="item">
                 <kon-dropdown>
                     <template #f>
-                        <div class="flex flex-col items-center">
+                        <div class="flex flex-col items-center cursor-pointer">
                             <svg-history></svg-history>
                             <p>历史</p>
                         </div>
@@ -84,7 +84,7 @@
             <li class="item">
                 <kon-dropdown>
                     <template #f>
-                        <div class="flex flex-col items-center">
+                        <div class="flex flex-col items-center cursor-pointer">
                             <svg-invent></svg-invent>
                             <p>创作中心</p>
                         </div>
@@ -186,11 +186,8 @@ const messageList = ref([
     gap: .5rem;
     min-width: 20rem;
     padding: 1rem;
-    background-color: white;
     animation: $textAnimation3;
     border-radius: .5rem;
-
-
 }
 
 img {
