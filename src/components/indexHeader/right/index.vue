@@ -51,12 +51,12 @@
                         </div>
                     </template>
                     <template #c>
-                        <IndexHeader-right-item3 class="dropdown" style="width: 25rem;" />
+                        <IndexHeader-right-item3 class="dropdown" style="width: 25rem;padding-bottom: 0;" />
                     </template>
                 </kon-dropdown>
             </li>
             <li class="item">
-                <kon-dropdown>
+                <kon-dropdown :needIndent="true">
                     <template #f>
                         <div class="flex flex-col items-center cursor-pointer">
                             <svg-collect></svg-collect>
@@ -64,12 +64,12 @@
                         </div>
                     </template>
                     <template #c>
-                        asdadsasdsadad
+                        <kon-optionalContainer class="dropdown"  style="width: 30rem;"></kon-optionalContainer>
                     </template>
                 </kon-dropdown>
             </li>
             <li class="item">
-                <kon-dropdown>
+                <kon-dropdown  :needIndent="true">
                     <template #f>
                         <div class="flex flex-col items-center cursor-pointer">
                             <svg-history></svg-history>
@@ -77,7 +77,15 @@
                         </div>
                     </template>
                     <template #c>
-                        123123
+                        <kon-optionalContainer class="dropdown" direction="y" style="width: 20rem;">
+                            <template #f>
+                                <div class="flex cursor-pointer w-full">
+                                    <p class="flex-grow text-center p-2  rounded-lg hover:bg-[var(--textColorBlue)] hover:text-[var(--textColorWhite)]">视频</p>
+                                    <p class="flex-grow text-center p-2  rounded-lg hover:bg-[var(--textColorBlue)] hover:text-[var(--textColorWhite)]">直播</p>
+                                    <p class="flex-grow text-center p-2  rounded-lg hover:bg-[var(--textColorBlue)] hover:text-[var(--textColorWhite)]">专栏</p>
+                                </div>
+                            </template>
+                        </kon-optionalContainer>
                     </template>
                 </kon-dropdown>
             </li>
@@ -88,11 +96,11 @@
                             <svg-invent></svg-invent>
                             <p>创作中心</p>
                         </div>
-                    </template>
-                    <template #c>
-                        1233123131
-                    </template>
+                    </template> 
                 </kon-dropdown>
+            </li>
+            <li  class="item">
+                <button class="bg-[var(--textColorPink2)] px-8 py-2  rounded-2xl">投稿</button>
             </li>
         </ul>
     </div>
@@ -125,10 +133,10 @@ const messageList = ref([
     flex-shrink: 0;
 
     ul {
-        width: 100%;
+        width: fit-content;
         height: 100%;
-        display: flex;
-        justify-content: space-between;
+        display: flex; 
+        margin-left: auto;
         align-items: center;
         position: relative;
 
@@ -180,14 +188,12 @@ const messageList = ref([
 
 
 
-.dropdown {
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
+.dropdown { 
     min-width: 20rem;
     padding: 1rem;
     animation: $textAnimation3;
     border-radius: .5rem;
+    color: var(--baseColor);
 }
 
 img {

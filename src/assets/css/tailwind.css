@@ -6,6 +6,8 @@
     --baseColor: #18191C;
     --textColorPink: #FF538E;
     --textColorPink2: #FB7199;
+    --textColorBlue:#00AEEC;
+    --textColorWhite: #FFFFFF;
     --bgPink: #FFECF1;
     --textColor1: #61666D;
     --textColor2: #9499A0;
@@ -21,6 +23,7 @@ body {
   
   
 }
+
 ::-webkit-scrollbar {
     width: 3px;  
 }

@@ -29,8 +29,7 @@ const headerListLeft = [
 <style scoped lang="scss">
 @import '~/assets/css/textAnimation.scss';
 .left {
-    display: flex;
-    justify-content: space-between; 
+    display: flex; 
     // width: fit-content;
     height: 100%;
      width: 35%;

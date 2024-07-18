@@ -3,7 +3,7 @@
     <div :class="dropdownContainerClassName" @mouseover="start" @mouseleave="over">
         <!-- <div :class="dropdownContainerClassName"> -->
         <slot name="f"></slot>
-        <div class="p" :style="{ 'top': avatar ? '50%' : '100%' }">
+        <div :class="pClassName" :style="{ 'top': avatar ? '50%' : '100%' }">
             <div v-if="animationDone && avatar">
                 <div class="bg-white rounded-lg">
                     <slot name="c"></slot>
@@ -24,10 +24,13 @@
 <script setup>
 const emit = defineEmits(['setAnimationStart'])
 const animationDone = ref(false)
-const props = defineProps(['avatar'])
+const props = defineProps(['avatar','needIndent'])
 const dropdownContainerClassName = computed(() => {
     return props.avatar ? 'dropdown-container dropdown-container-animation-start'
         : 'dropdown-container';
+})
+const pClassName=computed(()=>{
+    return props.needIndent ? 'p2' : 'p'
 })
 let startFnCopy;
 let timer;
@@ -57,9 +60,10 @@ const over = () => {
     }
     clearTimeout(timer)
 } 
+
 </script>
 <style scoped lang='scss'>
-.p {
+.p,.p2 {
     z-index: 1;
     top: 100%;
     left: 50%;
@@ -70,7 +74,9 @@ const over = () => {
     border-radius: .5rem;
     box-shadow: 0 0 1rem rgba(0, 0, 0, .15);
 }
-
+.p2{
+    transform: translateX(-70%);
+}
 .dropdown-container {
     position: relative;
     width: fit-content;

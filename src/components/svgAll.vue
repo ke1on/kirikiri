@@ -26,6 +26,7 @@
         <svg-bigVipContent2 :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'bigVipContent2'" />
         <svg-bigVipContent3 :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'bigVipContent3'" />
         <svg-bigVipContent4 :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'bigVipContent4'" />
+        <svg-up :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'up'" />
     </div>
 </template>
 
