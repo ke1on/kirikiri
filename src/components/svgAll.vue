@@ -27,6 +27,8 @@
         <svg-bigVipContent3 :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'bigVipContent3'" />
         <svg-bigVipContent4 :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'bigVipContent4'" />
         <svg-up :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'up'" />
+        <svg-videoTV :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'videoTV'" />
+        <svg-danmu :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'danmu'" />
     </div>
 </template>
 

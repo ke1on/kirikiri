@@ -1,11 +1,7 @@
 <template>
-    <div class='indexContainer'>
-        <div>123</div>
-        <div>456</div>
-        <div>789</div>
-        <!-- <img crossorigin="*" class="img" id="img-0" src="https://i0.hdslb.com/bfs/archive/b42bd435c1e46e0e6d62617943728e3e56acc0e4.jpg" width="617"> -->
-        <!-- <img  referrerpolicy="no-referrer"
-            src="https://i1.hdslb.com/bfs/face/324cebc5d49913b719a5c55e2aac4b4a63cbe8a1.jpg"> -->
+    <div class='indexContainer grid grid-cols-5 gap-4'>
+        <kon-carousel class="col-span-2 row-span-2"></kon-carousel>
+        <kon-videoItem v-for="i in 21"></kon-videoItem>
     </div>
 </template>
 
@@ -17,4 +13,6 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
 }
+
+
 </style>
