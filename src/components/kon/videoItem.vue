@@ -1,8 +1,8 @@
 <template>
     <div>
-        <div ref="playerBox" @mouseover="play" @mouseleave="pause">
-            <div v-show="!isPlay" class="imgbox rounded-lg overflow-hidden relative cursor-pointer">
-                <img src="http://i2.hdslb.com/bfs/archive/caca6b7b9b77171065204cb8be68ae30e7656a4e.jpg"
+        <div ref="playerBox" @mouseover="play" @mouseleave="pause" class="w-full aspect-video">
+            <div v-show="!isPlay" class="w-full h-full imgbox rounded-lg overflow-hidden relative cursor-pointer">
+                <img :src="videoData.pic"
                     referrerpolicy="no-referrer" alt="" class="rounded-lg" />
                 <div
                     class="mask absolute bottom-0 left-0 text-[var(--textColorWhite)] text-sm p-[2%] flex justify-between w-full">
@@ -38,7 +38,7 @@
                 </div>
             </div>
         </div>
-        <div class="h-[3rem] line-clamp-2 my-1">【熟肉】补充每日短视频能量你你你你你你你你你那那那那那那那那那那那那那那那那那-xQc</div>
+        <div class="h-[3rem] line-clamp-2 my-1">{{ videoData.title }}</div>
         <div class="text-sm flex items-center gap-1 text-[var(--textColor2)]">
             <svg-up></svg-up>
             <span>苏苏的职场日记</span>
@@ -49,12 +49,14 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-    preview: Boolean
-})
+import type { sqlVideo } from '~/src/types/sqlTable'
+const props = defineProps<{
+    preview: boolean;
+    videoData: sqlVideo;
+}>();
 const isPlay = ref(false);
 const videoDOM = ref<HTMLVideoElement | null>(null);
-const playerBox = ref(null);
+const playerBox = ref(null); 
 const play = () => { 
     if (!props.preview) return;
     isPlay.value = true;

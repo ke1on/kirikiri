@@ -77,8 +77,7 @@ const carouselContainer = computed(() => {
  * @param {Boolean} next 是否开启下一轮的自动轮播
  */
 function carouselStart(du = 5000, next = true) {
-    timer = setTimeout(() => {
-        console.log(1)
+    timer = setTimeout(() => { 
         carouselIndex.value++;
         if (carouselIndex.value > imgrefs.value.length - 2) { 
             setTimeout(() => {
