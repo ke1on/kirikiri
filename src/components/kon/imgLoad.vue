@@ -1,9 +1,8 @@
 <template>
     <div>
-        <img ref="image"
+        <img ref="image" class="w-full h-full object-fill"  
             :src="url"
-            referrerpolicy="no-referrer" crossOrigin="anonymous" />
-
+            referrerpolicy="no-referrer" crossOrigin="anonymous" /> 
     </div>
 </template>
 

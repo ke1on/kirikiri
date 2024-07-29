@@ -1,7 +1,7 @@
 <!-- 首页 -->
 <template>
     <IndexHeader /> 
-    <div class="px-40">
+    <div class="px-36">
         <IndexNav />
         <indexContainer />
     </div>
