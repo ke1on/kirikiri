@@ -1,40 +1,33 @@
 <template>
     <div>
         <div ref="playerBox" @mouseover="play" @mouseleave="pause" class="w-full aspect-video">
-            <div v-show="!isPlay" class="w-full h-full imgbox rounded-lg overflow-hidden relative cursor-pointer">
-                <img :src="videoData.pic"
-                    referrerpolicy="no-referrer" alt="" class="rounded-lg" />
+            <div v-show="!isPlaying" class="w-full h-full imgbox rounded-lg overflow-hidden relative cursor-pointer">
+                <NuxtImg :src="videoData.pic" loading="lazy" referrerpolicy="no-referrer" class="rounded-lg"></NuxtImg>
                 <div
                     class="mask absolute bottom-0 left-0 text-[var(--textColorWhite)] text-sm p-[2%] flex justify-between w-full">
                     <div class="flex gap-2">
                         <div class="flex items-center gap-1">
                             <svgAll name="videoTV" />
-                            <span>2.6万</span>
+                            <span>{{ formatToWan(videoData.view) }}</span>
                         </div>
                         <div class="flex items-center gap-1">
                             <svgAll name="danmu" />
-                            <span>2.6万</span>
+                            <span>{{ formatToWan(videoData.danmaku) }}</span>
                         </div>
                     </div>
                     <div>04:52</div>
                 </div>
             </div>
-            <div v-show="isPlay" class="viodebox rounded-lg overflow-hidden relative cursor-pointer">
+            <div v-show="isPlaying" class="viodebox rounded-lg overflow-hidden relative cursor-pointer">
                 <video ref="videoDOM" src="~/assets/moren.mp4"
                     poster="http://i2.hdslb.com/bfs/archive/caca6b7b9b77171065204cb8be68ae30e7656a4e.jpg"></video>
                 <div
                     class="mask absolute bottom-0 left-0 text-[var(--textColorWhite)] text-sm p-[2%] flex justify-between w-full">
-                    <div class="flex gap-2">
-                        <div class="flex items-center gap-1">
-                            <svgAll name="videoTV" />
-                            <span>2.6万</span>
-                        </div>
-                        <div class="flex items-center gap-1">
-                            <svgAll name="danmu" />
-                            <span>2.6万</span>
-                        </div>
+
+                    <div class="ml-auto flex gap-1">
+                        <p>00:00</p>
+                        <p>04:52</p>
                     </div>
-                    <div>04:52</div>
                 </div>
             </div>
         </div>
@@ -54,19 +47,26 @@ const props = defineProps<{
     preview: boolean;
     videoData: sqlVideo;
 }>();
-const isPlay = ref(false);
+const isPlaying = ref(false);
 const videoDOM = ref<HTMLVideoElement | null>(null);
-const playerBox = ref(null); 
-const play = () => { 
+const playerBox = ref(null);
+const formatToWan = (num: any,) => {
+    if (num < 10000) {
+        return num;
+    }
+    const wan = (Number(num) / 10000).toFixed(2); // 保留两位小数
+    return `${wan}万`;
+}
+const play = () => {
     if (!props.preview) return;
-    isPlay.value = true;
+    isPlaying.value = true;
     nextTick(() => {
-        videoDOM.value?.play();  
+        videoDOM.value?.play();
     })
-} 
-const pause = () => { 
+}
+const pause = () => {
     if (!props.preview) return;
-    isPlay.value = false;
+    isPlaying.value = false;
     videoDOM.value?.pause();
 }
 </script>
