@@ -6,7 +6,7 @@
             <IndexHeader-center /> 
             <IndexHeader-right />
         </div>
-
+        
     </div>
 </template>
 
