@@ -143,14 +143,15 @@ onMounted(() => {
 })
 </script>
 <style scoped lang='scss'>
-.center {
-    width: 28%;
+.center { 
+    min-width: 28%;
     padding: .25rem;
     background-color: white; 
     border-radius: .5rem;
     position: relative;
     -webkit-font-smoothing: antialiased;
     height: fit-content;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .centerFocus {

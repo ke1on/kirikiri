@@ -6,33 +6,31 @@
     --baseColor: #18191C;
     --textColorPink: #FF538E;
     --textColorPink2: #FB7199;
-    --textColorBlue:#00AEEC;
+    --textColorBlue: #00AEEC;
     --textColorWhite: #FFFFFF;
     --bgPink: #FFECF1;
     --textColor1: #61666D;
     --textColor2: #9499A0;
     --textColor3: #C9CCD0;
+    --textColor4: #212121;
     color: var(--baseColor);
 }
 
 body {
-    min-width: 1500px;
-
-    font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif !important;
-
-  
-  
+    min-width: 1400px;
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 ::-webkit-scrollbar {
-    width: 3px;  
+    width: 3px;
+    height: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--textColor3);  
-    border-radius: 5px; 
+    background: var(--textColor3);
+    border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background:var(--textColor2);  
+    background: var(--textColor2);
 }

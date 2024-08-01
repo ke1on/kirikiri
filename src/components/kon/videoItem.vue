@@ -31,7 +31,7 @@
                 </div>
             </div>
         </div>
-        <div class="h-[3rem] line-clamp-2 my-1">{{ videoData.title }}</div>
+        <div class="h-[2.9rem] text-[.9rem] line-clamp-2  mt-2">{{ videoData.title }}</div>
         <div class="text-sm flex items-center gap-1 text-[var(--textColor2)]">
             <svg-up></svg-up>
             <span>苏苏的职场日记</span>

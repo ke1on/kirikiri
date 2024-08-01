@@ -35,11 +35,6 @@ function obCallback(entries:IntersectionObserverEntry[]) {
     });
 }
 
-
-
-
-
-
 // 开始观察元素
 props.needOb && onMounted(() => {
     const observer = new IntersectionObserver(obCallback, options);

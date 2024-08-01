@@ -20,7 +20,7 @@
                 <kon-dropdown>
                     <template #f>
                         <div class="flex flex-col items-center cursor-pointer">
-                            <svg-bigVip></svg-bigVip>
+                            <svg-bigVip  fillColor="var(--textColorWhite)"></svg-bigVip>
                             <p>大会员</p>
                         </div>
                     </template>
@@ -35,8 +35,8 @@
                 <kon-multiLevelMenu :menuList="messageList" direction="b" class="text-[var(--baseColor)]">
                     <template #f>
                         <div class="flex flex-col items-center cursor-pointer">
-                            <svg-message></svg-message>
-                            <p class="text-white">消息</p>
+                            <svg-message  fillColor="var(--textColorWhite)" ></svg-message> 
+                            <p class="text-[var(--textColorWhite)]">消息</p>
                         </div>
                     </template>
                 </kon-multiLevelMenu>
@@ -46,7 +46,7 @@
                 <kon-dropdown>
                     <template #f>
                         <div class="flex flex-col items-center cursor-pointer">
-                            <svg-news></svg-news>
+                            <svg-news  fillColor="var(--textColorWhite)"></svg-news>
                             <p>动态</p>
                         </div>
                     </template>
@@ -64,12 +64,12 @@
                         </div>
                     </template>
                     <template #c>
-                        <kon-optionalContainer class="dropdown"  style="width: 30rem;"></kon-optionalContainer>
+                        <kon-optionalContainer class="dropdown" style="width: 30rem;"></kon-optionalContainer>
                     </template>
                 </kon-dropdown>
             </li>
             <li class="item">
-                <kon-dropdown  :needIndent="true">
+                <kon-dropdown :needIndent="true">
                     <template #f>
                         <div class="flex flex-col items-center cursor-pointer">
                             <svg-history></svg-history>
@@ -80,9 +80,15 @@
                         <kon-optionalContainer class="dropdown" direction="y" style="width: 20rem;">
                             <template #f>
                                 <div class="flex cursor-pointer w-full">
-                                    <p class="flex-grow text-center p-2  rounded-lg hover:bg-[var(--textColorBlue)] hover:text-[var(--textColorWhite)]">视频</p>
-                                    <p class="flex-grow text-center p-2  rounded-lg hover:bg-[var(--textColorBlue)] hover:text-[var(--textColorWhite)]">直播</p>
-                                    <p class="flex-grow text-center p-2  rounded-lg hover:bg-[var(--textColorBlue)] hover:text-[var(--textColorWhite)]">专栏</p>
+                                    <p
+                                        class="flex-grow text-center p-2  rounded-lg hover:bg-[var(--textColorBlue)] hover:text-[var(--textColorWhite)]">
+                                        视频</p>
+                                    <p
+                                        class="flex-grow text-center p-2  rounded-lg hover:bg-[var(--textColorBlue)] hover:text-[var(--textColorWhite)]">
+                                        直播</p>
+                                    <p
+                                        class="flex-grow text-center p-2  rounded-lg hover:bg-[var(--textColorBlue)] hover:text-[var(--textColorWhite)]">
+                                        专栏</p>
                                 </div>
                             </template>
                         </kon-optionalContainer>
@@ -96,11 +102,11 @@
                             <svg-invent></svg-invent>
                             <p>创作中心</p>
                         </div>
-                    </template> 
+                    </template>
                 </kon-dropdown>
             </li>
-            <li  class="item">
-                <button class="bg-[var(--textColorPink2)] px-8 py-2  rounded-2xl">投稿</button>
+            <li class="item">
+                <button class="bg-[var(--textColorPink2)] px-8 py-2 text-white rounded-2xl">投稿</button>
             </li>
         </ul>
     </div>
@@ -129,13 +135,11 @@ const messageList = ref([
 @import '~/assets/css/textAnimation.scss';
 
 .right {
-    width: 28%;
-    flex-shrink: 0;
-
+    flex-grow: 1; 
     ul {
         width: fit-content;
         height: 100%;
-        display: flex; 
+        display: flex;
         margin-left: auto;
         align-items: center;
         position: relative;
@@ -143,7 +147,7 @@ const messageList = ref([
         .item {
             position: relative;
             height: 100%;
-            color: white;
+            color: var(--textColorWhite);
             display: flex;
             align-items: center;
             height: fit-content;
@@ -188,7 +192,7 @@ const messageList = ref([
 
 
 
-.dropdown { 
+.dropdown {
     min-width: 20rem;
     padding: 1rem;
     animation: $textAnimation3;

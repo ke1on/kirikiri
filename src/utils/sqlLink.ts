@@ -1,5 +1,5 @@
 import sql from 'mssql';
-import type { sqlVideo } from '~/src/types/sqlTable';
+import type { sqlVideo } from '~/types/sqlTable';
 const config = {
     user: "ke1on",
     password: "123456",
@@ -12,35 +12,45 @@ const config = {
     }
 }
 
+ 
 export default async function setSql(fnType: fnType) {
     async function main() {
         let pool: sql.ConnectionPool;
         try {
             pool = await sql.connect(config);
             if (fnType?.fn) {
-                fnType.fn(fnType.fn);
+                fnType.fn(pool);
             } else {
-                
-                try{
-                  const result: sql.IResult<sqlVideo> = await pool.request().query(`${fnType.sqlCommand}`);
-                  return {code:true,data:result};  
-                }catch{
-                    return {code:false,data:null}
+                let result: sql.IResult<sqlVideo>;
+                try {
+                    result = await pool.request().query(`${fnType.sqlCommand}`);
+                    return { code: true, data: result };
+                } catch (error: any) {
+                    //捕获错误
+ 
+                     
+                    return { code: false, data: null, error:error.class }
                 }
-                
+
             }
 
         } catch (err) {
             console.error('SQL error', err);
 
-            return {code:false,data:null};
+            return { code: false, data: null };
         }
 
     }
 
     return main();
 }
+/**
+ * @description 函数类型，object类型
+ */
 interface fnType {
     fn?: Function | null;
+    /**
+     * 简单查写传这个就行
+     */
     sqlCommand?: string | null;
 }
