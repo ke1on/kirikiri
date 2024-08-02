@@ -3,7 +3,7 @@
     <IndexHeader />
     <div class="px-36">
         <IndexNav />
-        <!-- <indexContainer /> -->
+        <indexContainer />
     </div>
     <kon-dialog name="login"></kon-dialog>
 </template>

@@ -2,7 +2,7 @@
     <div class='indexContainer grid  gap-4 2xl:grid-cols-5 grid-cols-4 relative' v-if="loaded">
         <kon-carousel :videoList="carouselVideoList" class="col-span-2 row-span-2"></kon-carousel>
         <kon-videoItem :preview="preview" v-for="i in videoList" :videoData="i"></kon-videoItem>
-        <div class="loaderBox flex justify-center w-full   p-8">
+        <div class="loaderBox flex justify-center w-full 2xl:col-span-5 col-span-4  p-8">
             <kon-loader @onLoading='addVideoList'></kon-loader>
         </div>
         <label for="k" class="absolute flex items-center gap-1 -right-16  text-[12px] select-none cursor-pointer">
@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import type { sqlVideo } from '~/src/types/sqlTable'
+import type { sqlVideo } from '~/types/sqlTable'
 const preview = ref(false)
 const loaded = ref(false)
 let videoList = ref<any>([])

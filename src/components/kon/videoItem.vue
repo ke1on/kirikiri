@@ -34,7 +34,7 @@
         <div class="h-[2.9rem] text-[.9rem] line-clamp-2  mt-2">{{ videoData.title }}</div>
         <div class="text-sm flex items-center gap-1 text-[var(--textColor2)]">
             <svg-up></svg-up>
-            <span>苏苏的职场日记</span>
+            <span>{{ ownersInfo.name }}</span>
             <span class="font-bold">·</span>
             <span>昨天</span>
         </div>
@@ -42,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import type { sqlVideo } from '~/src/types/sqlTable'
+import type { sqlVideo,Owner } from '~/types/sqlTable'
 const props = defineProps<{
     preview: boolean;
     videoData: sqlVideo;
@@ -50,6 +50,7 @@ const props = defineProps<{
 const isPlaying = ref(false);
 const videoDOM = ref<HTMLVideoElement | null>(null);
 const playerBox = ref(null);
+const ownersInfo=await getOwnersInfo();
 const formatToWan = (num: any,) => {
     if (num < 10000) {
         return num;
@@ -69,6 +70,11 @@ const pause = () => {
     isPlaying.value = false;
     videoDOM.value?.pause();
 }
+async function getOwnersInfo(){
+    let res= await $fetch<Array<Owner>>(`/api/videoOwners?mid=${props.videoData.mid}`); 
+    return res[0];
+}
+console.log(props.videoData)
 </script>
 <style scoped lang='scss'>
 .mask {

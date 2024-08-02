@@ -43,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import type { sqlVideo } from '~/src/types/sqlTable'
+import type { sqlVideo } from '~/types/sqlTable'
 const isLoad = ref(false);
 const imgrefs = ref([]) as Ref<Array<any>>
 const carouselIndex = ref(1);

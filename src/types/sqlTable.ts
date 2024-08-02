@@ -12,3 +12,8 @@ export   interface sqlVideo {
     like: bigint,
     danmaku: bigint,
 }
+export interface Owner {
+    mid: bigint;
+    name: string;
+    face: string;
+}

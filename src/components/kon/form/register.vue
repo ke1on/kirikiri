@@ -4,15 +4,15 @@
         <div class="inputBox  ">
             <div class="item">
                 <label for="useID">账<span class="nbsp"></span>号：</label>
-                <input type="text" v-model="state.useID" name="useID" id="useID" placeholder="请输入账号，英文数字组合" />
+                <input type="text" @focus="$emit('setClose',false)" v-model="state.useID" name="useID" id="useID" placeholder="请输入账号，英文数字组合" />
             </div>
             <div class="item" v-if="modle == 0">
                 <label for="useName">用户名：</label>
-                <input type="text" v-model="state.useName" name="useName" id="useName" placeholder="请输入用户名，昵称" />
+                <input type="text" @focus="$emit('setClose',false)" v-model="state.useName" name="useName" id="useName" placeholder="请输入用户名，昵称" />
             </div>
             <div class="item">
                 <label for="password">密<span class="nbsp"></span>码：</label>
-                <input type="password" v-model="state.password" name="password" id="password"
+                <input type="password" @focus="$emit('setClose',true)" v-model="state.password" name="password" id="password"
                     placeholder="请输入密码，英文数字组合" />
             </div>
 
@@ -25,8 +25,9 @@
 </template>
 
 <script setup lang="ts">
-
 import { useAuthStore } from "@/store/auth"
+const emit = defineEmits(['setClose']);
+
 const authStore = useAuthStore()
 /**
  * 0 注册 1 登录
