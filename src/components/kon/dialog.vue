@@ -1,9 +1,9 @@
 <template>
-    <div class='dialog' v-if="show">
+    <div class='dialog' v-show="show" @click.stop="close">
 
-        <div class="dialog-content w-full h-full  flex items-center justify-center" @click="close">
+        <div class="dialog-content" @click.stop="() => false">
             <slot name="default">
-                <kon-register></kon-register>
+                <kon-form />
             </slot>
         </div>
 
@@ -13,11 +13,31 @@
 </template>
 
 <script setup>
-const show = ref(false)
+import clientOnly from '~/utils/clientOnly';
+
+const show = ref(false);
+const props = defineProps({
+    name: {
+        type: String,
+        default: 'dialog',
+    }
+})
+//将close方法暴露给全局
+clientOnly(() => {
+    window.kon_dialogs || (window.kon_dialogs = [])
+    window.kon_dialogs.push({
+        name: props.name,
+        open,
+        close,
+    })
+})
+
 function close() {
     show.value = false
 }
-defineExpose({show})
+function open() {
+    show.value = true
+}
 </script>
 <style scoped lang='scss'>
 .dialog {
@@ -29,5 +49,8 @@ defineExpose({show})
     top: 0;
     background: rgba(0, 0, 0, 0.5);
     z-index: 999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 </style>

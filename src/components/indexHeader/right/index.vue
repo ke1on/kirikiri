@@ -5,9 +5,8 @@
                 :avatar="true">
                 <template #f>
                     <div :class="avatarClassName">
-                        <NuxtImg class="img"
-                            src="http://ke1on.top:5999/%E4%B8%BA%E7%BE%8E%E5%A5%BD%E7%9A%84%E4%B8%96%E7%95%8C%E7%8C%AE%E4%B8%8A%E7%A5%9D%E7%A6%8F.jpg"
-                            loading="lazy"></NuxtImg>
+                        <img class="img" v-if="loaded&&useInfo.face" :src="useInfo.face" referrerpolicy="no-referrer"></img>
+                        <img class="img" v-else src="~/assets/img/33_open.png" referrerpolicy="no-referrer"></img>
 
                     </div>
                 </template>
@@ -20,7 +19,7 @@
                 <kon-dropdown>
                     <template #f>
                         <div class="flex flex-col items-center cursor-pointer">
-                            <svg-bigVip  fillColor="var(--textColorWhite)"></svg-bigVip>
+                            <svg-bigVip fillColor="var(--textColorWhite)"></svg-bigVip>
                             <p>大会员</p>
                         </div>
                     </template>
@@ -35,7 +34,7 @@
                 <kon-multiLevelMenu :menuList="messageList" direction="b" class="text-[var(--baseColor)]">
                     <template #f>
                         <div class="flex flex-col items-center cursor-pointer">
-                            <svg-message  fillColor="var(--textColorWhite)" ></svg-message> 
+                            <svg-message fillColor="var(--textColorWhite)"></svg-message>
                             <p class="text-[var(--textColorWhite)]">消息</p>
                         </div>
                     </template>
@@ -46,7 +45,7 @@
                 <kon-dropdown>
                     <template #f>
                         <div class="flex flex-col items-center cursor-pointer">
-                            <svg-news  fillColor="var(--textColorWhite)"></svg-news>
+                            <svg-news fillColor="var(--textColorWhite)"></svg-news>
                             <p>动态</p>
                         </div>
                     </template>
@@ -113,8 +112,12 @@
 </template>
 
 <script setup>
-// const animationDone = ref(false);
-// const animationStart = ref(false);
+import { useAuthStore } from '~/store/auth';
+const auth = useAuthStore()
+const useInfo = computed(() => {
+    return auth.$state.useInfo
+})
+const loaded = ref(false)
 const avatarAnimationStart = ref(false)
 const setAnimationStart = ({ val }) => {
     avatarAnimationStart.value = val
@@ -130,12 +133,16 @@ const messageList = ref([
     { label: '系统消息' },
     { label: '我的消息' },
 ])
+onMounted(() => {
+    loaded.value = true
+})
 </script>
 <style scoped lang='scss'>
 @import '~/assets/css/textAnimation.scss';
 
 .right {
-    flex-grow: 1; 
+    flex-grow: 1;
+
     ul {
         width: fit-content;
         height: 100%;
@@ -177,9 +184,9 @@ const messageList = ref([
             position: relative;
             z-index: 2;
             transition: height 0.25s ease-out;
-
+            cursor: pointer;
             &>img {
-                border: 2px solid white;
+                border: 2px solid var(--textColorWhite);
                 border-radius: 50%;
             }
         }

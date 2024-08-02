@@ -1,12 +1,22 @@
 <template>
-    <div class='loader' ref="loader">
-        <div class="loader__bar"></div>
-        <div class="loader__bar"></div>
-        <div class="loader__bar"></div>
-        <div class="loader__bar"></div>
-        <div class="loader__bar"></div>
-        <div class="loader__ball"></div>
-    </div>
+    <div class="loader" ref="loader">
+  <svg viewBox="0 0 80 80">
+    <circle r="32" cy="40" cx="40" id="test"></circle>
+  </svg>
+</div>
+
+<div class="loader triangle">
+  <svg viewBox="0 0 86 80">
+    <polygon points="43 8 79 72 7 72"></polygon>
+  </svg>
+</div>
+
+<div class="loader">
+  <svg viewBox="0 0 80 80">
+    <rect height="64" width="64" y="8" x="8"></rect>
+  </svg>
+</div>
+
 </template>
 
 <script setup lang="ts">
@@ -43,339 +53,160 @@ props.needOb && onMounted(() => {
 </script>
 <style scoped lang='scss'>
 .loader {
-    position: relative;
-    width: 75px;
-    height: 100px;
+  --path: #2f3545;
+  --dot: #5628ee;
+  --duration: 3s;
+  width: 44px;
+  height: 44px;
+  position: relative;
 }
 
-.loader__bar {
-    position: absolute;
-    bottom: 0;
-    width: 10px;
-    height: 50%;
-    background: rgb(0, 0, 0);
-    transform-origin: center bottom;
-    box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+.loader:before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  position: absolute;
+  display: block;
+  background: var(--dot);
+  top: 37px;
+  left: 19px;
+  transform: translate(-18px, -18px);
+  animation: dotRect var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86)
+    infinite;
 }
 
-.loader__bar:nth-child(1) {
-    left: 0px;
-    transform: scale(1, 0.2);
-    -webkit-animation: barUp1 4s infinite;
-    animation: barUp1 4s infinite;
+.loader svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
-.loader__bar:nth-child(2) {
-    left: 15px;
-    transform: scale(1, 0.4);
-    -webkit-animation: barUp2 4s infinite;
-    animation: barUp2 4s infinite;
+.loader svg rect,
+.loader svg polygon,
+.loader svg circle {
+  fill: none;
+  stroke: var(--path);
+  stroke-width: 10px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
 }
 
-.loader__bar:nth-child(3) {
-    left: 30px;
-    transform: scale(1, 0.6);
-    -webkit-animation: barUp3 4s infinite;
-    animation: barUp3 4s infinite;
+.loader svg polygon {
+  stroke-dasharray: 145 76 145 76;
+  stroke-dashoffset: 0;
+  animation: pathTriangle var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86)
+    infinite;
 }
 
-.loader__bar:nth-child(4) {
-    left: 45px;
-    transform: scale(1, 0.8);
-    -webkit-animation: barUp4 4s infinite;
-    animation: barUp4 4s infinite;
+.loader svg rect {
+  stroke-dasharray: 192 64 192 64;
+  stroke-dashoffset: 0;
+  animation: pathRect 3s cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
 }
 
-.loader__bar:nth-child(5) {
-    left: 60px;
-    transform: scale(1, 1);
-    -webkit-animation: barUp5 4s infinite;
-    animation: barUp5 4s infinite;
+.loader svg circle {
+  stroke-dasharray: 150 50 150 50;
+  stroke-dashoffset: 75;
+  animation: pathCircle var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86)
+    infinite;
 }
 
-.loader__ball {
-    position: absolute;
-    bottom: 10px;
-    left: 0;
-    width: 10px;
-    height: 10px;
-    background: rgb(44, 143, 255);
-    border-radius: 50%;
-    -webkit-animation: ball624 4s infinite;
-    animation: ball624 4s infinite;
+.loader.triangle {
+  width: 48px;
 }
 
-@keyframes ball624 {
-    0% {
-        transform: translate(0, 0);
-    }
-
-    5% {
-        transform: translate(8px, -14px);
-    }
-
-    10% {
-        transform: translate(15px, -10px);
-    }
-
-    17% {
-        transform: translate(23px, -24px);
-    }
-
-    20% {
-        transform: translate(30px, -20px);
-    }
-
-    27% {
-        transform: translate(38px, -34px);
-    }
-
-    30% {
-        transform: translate(45px, -30px);
-    }
-
-    37% {
-        transform: translate(53px, -44px);
-    }
-
-    40% {
-        transform: translate(60px, -40px);
-    }
-
-    50% {
-        transform: translate(60px, 0);
-    }
-
-    57% {
-        transform: translate(53px, -14px);
-    }
-
-    60% {
-        transform: translate(45px, -10px);
-    }
-
-    67% {
-        transform: translate(37px, -24px);
-    }
-
-    70% {
-        transform: translate(30px, -20px);
-    }
-
-    77% {
-        transform: translate(22px, -34px);
-    }
-
-    80% {
-        transform: translate(15px, -30px);
-    }
-
-    87% {
-        transform: translate(7px, -44px);
-    }
-
-    90% {
-        transform: translate(0, -40px);
-    }
-
-    100% {
-        transform: translate(0, 0);
-    }
+.loader.triangle:before {
+  left: 21px;
+  transform: translate(-10px, -18px);
+  animation: dotTriangle var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86)
+    infinite;
 }
 
-@-webkit-keyframes barUp1 {
-    0% {
-        transform: scale(1, 0.2);
-    }
+@keyframes pathTriangle {
+  33% {
+    stroke-dashoffset: 74;
+  }
 
-    40% {
-        transform: scale(1, 0.2);
-    }
+  66% {
+    stroke-dashoffset: 147;
+  }
 
-    50% {
-        transform: scale(1, 1);
-    }
-
-    90% {
-        transform: scale(1, 1);
-    }
-
-    100% {
-        transform: scale(1, 0.2);
-    }
+  100% {
+    stroke-dashoffset: 221;
+  }
 }
 
-@keyframes barUp1 {
-    0% {
-        transform: scale(1, 0.2);
-    }
+@keyframes dotTriangle {
+  33% {
+    transform: translate(0, 0);
+  }
 
-    40% {
-        transform: scale(1, 0.2);
-    }
+  66% {
+    transform: translate(10px, -18px);
+  }
 
-    50% {
-        transform: scale(1, 1);
-    }
-
-    90% {
-        transform: scale(1, 1);
-    }
-
-    100% {
-        transform: scale(1, 0.2);
-    }
+  100% {
+    transform: translate(-10px, -18px);
+  }
 }
 
-@-webkit-keyframes barUp2 {
-    0% {
-        transform: scale(1, 0.4);
-    }
+@keyframes pathRect {
+  25% {
+    stroke-dashoffset: 64;
+  }
 
-    40% {
-        transform: scale(1, 0.4);
-    }
+  50% {
+    stroke-dashoffset: 128;
+  }
 
-    50% {
-        transform: scale(1, 0.8);
-    }
+  75% {
+    stroke-dashoffset: 192;
+  }
 
-    90% {
-        transform: scale(1, 0.8);
-    }
-
-    100% {
-        transform: scale(1, 0.4);
-    }
+  100% {
+    stroke-dashoffset: 256;
+  }
 }
 
-@keyframes barUp2 {
-    0% {
-        transform: scale(1, 0.4);
-    }
+@keyframes dotRect {
+  25% {
+    transform: translate(0, 0);
+  }
 
-    40% {
-        transform: scale(1, 0.4);
-    }
+  50% {
+    transform: translate(18px, -18px);
+  }
 
-    50% {
-        transform: scale(1, 0.8);
-    }
+  75% {
+    transform: translate(0, -36px);
+  }
 
-    90% {
-        transform: scale(1, 0.8);
-    }
-
-    100% {
-        transform: scale(1, 0.4);
-    }
+  100% {
+    transform: translate(-18px, -18px);
+  }
 }
 
-@-webkit-keyframes barUp3 {
-    0% {
-        transform: scale(1, 0.6);
-    }
+@keyframes pathCircle {
+  25% {
+    stroke-dashoffset: 125;
+  }
 
-    100% {
-        transform: scale(1, 0.6);
-    }
+  50% {
+    stroke-dashoffset: 175;
+  }
+
+  75% {
+    stroke-dashoffset: 225;
+  }
+
+  100% {
+    stroke-dashoffset: 275;
+  }
 }
 
-@keyframes barUp3 {
-    0% {
-        transform: scale(1, 0.6);
-    }
-
-    100% {
-        transform: scale(1, 0.6);
-    }
-}
-
-@-webkit-keyframes barUp4 {
-    0% {
-        transform: scale(1, 0.8);
-    }
-
-    40% {
-        transform: scale(1, 0.8);
-    }
-
-    50% {
-        transform: scale(1, 0.4);
-    }
-
-    90% {
-        transform: scale(1, 0.4);
-    }
-
-    100% {
-        transform: scale(1, 0.8);
-    }
-}
-
-@keyframes barUp4 {
-    0% {
-        transform: scale(1, 0.8);
-    }
-
-    40% {
-        transform: scale(1, 0.8);
-    }
-
-    50% {
-        transform: scale(1, 0.4);
-    }
-
-    90% {
-        transform: scale(1, 0.4);
-    }
-
-    100% {
-        transform: scale(1, 0.8);
-    }
-}
-
-@-webkit-keyframes barUp5 {
-    0% {
-        transform: scale(1, 1);
-    }
-
-    40% {
-        transform: scale(1, 1);
-    }
-
-    50% {
-        transform: scale(1, 0.2);
-    }
-
-    90% {
-        transform: scale(1, 0.2);
-    }
-
-    100% {
-        transform: scale(1, 1);
-    }
-}
-
-@keyframes barUp5 {
-    0% {
-        transform: scale(1, 1);
-    }
-
-    40% {
-        transform: scale(1, 1);
-    }
-
-    50% {
-        transform: scale(1, 0.2);
-    }
-
-    90% {
-        transform: scale(1, 0.2);
-    }
-
-    100% {
-        transform: scale(1, 1);
-    }
+.loader {
+  display: inline-block;
+  margin: 0 16px;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
-    <div class="userDropdown">
-        <p class="useName">{{ 'Ke1on' }}</p>
+    <div class="userDropdown" v-if="useInfo.token">
+        <p class="useName">{{ useInfo.useName }}</p>
         <p class="useInfo">
             <img src="~/assets/img/bigVip.avif" alt="">
             <svg-lv6 />
@@ -30,14 +30,25 @@
                 <kon-multiLevelMenu :menuList="menuList" title="推荐服务" titleIcon="collect"></kon-multiLevelMenu>
             </li>
             <li class="line"></li>
-            <li> 
+            <li @click="auth.logout()">
                 <kon-multiLevelMenu title="退出登录" titleIcon="logout" :needIcon='false'></kon-multiLevelMenu>
             </li>
         </ul>
     </div>
+    <div v-else class="userDropdown">
+        <p class="text-center text-lg">登录kirikiri，梦游幻想乡>w^</p>
+        <button class="bg-blue-400 text-white py-3 w-[80%] ml-[10%] rounded-lg" @click="openLogin">登录</button>
+
+    </div>
 </template>
 
 <script setup>
+
+import { useAuthStore } from '~/store/auth';
+const auth = useAuthStore()
+const useInfo = computed(() => {
+    return auth.$state.useInfo
+})
 const menuList = ref([
     {
         label: '直播中心',
@@ -59,6 +70,12 @@ const menuList = ref([
         icon: '',
     },
 ])
+const openLogin = (e) => {
+    e.preventDefault()
+    const element= window.kon_dialogs.filter(item => item.name == 'login')[0]
+    element.open()
+}
+
 </script>
 
 <style scoped lang="scss">
@@ -71,7 +88,7 @@ const menuList = ref([
 }
 
 .userDropdown {
-   padding-top: 3rem !important;
+    padding-top: 3rem !important;
     padding: 1rem 1.5rem;
 
 
