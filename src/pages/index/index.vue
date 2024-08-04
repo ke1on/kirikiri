@@ -3,7 +3,7 @@
     <IndexHeader />
     <div class="px-[8%]">
         <IndexNav />
-        <!-- <indexContainer /> -->
+        <indexContainer />
     </div>
     <kon-dialog></kon-dialog>
 </template>
