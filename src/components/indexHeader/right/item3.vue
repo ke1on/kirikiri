@@ -7,8 +7,8 @@
             <div class="flex-grow bg-[--textColor3] h-[1px]"></div>
         </div>
         <!-- 每条动态 -->
-        <div class="container flex flex-col gap-y-2 max-h-96 overflow-y-auto scroll-smooth">
-            <div class="content  flex gap-2 items-center justify-between " v-for="(item, index) in 5">
+        <div class="container flex flex-col gap-y-2 max-h-96 overflow-y-auto scroll-smooth ">
+            <div class="content  flex gap-2 items-center justify-between cursor-pointer" v-for="(item, index) in 5">
 
                 <img src="https://i1.hdslb.com/bfs/face/47cb26c7c0349df60df359457eb9758c04b3d796.jpg"
                     class="avatar  rounded-full w-[3rem] aspect-square mb-[auto]" referrerpolicy="no-referrer" alt="">

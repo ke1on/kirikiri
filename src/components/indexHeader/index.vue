@@ -1,6 +1,6 @@
 <!-- 组件--头部 -->
 <template>
-    <div class="header">
+    <div class="header" v-if="!header2">
         <div class="content">
             <IndexHeader-left classname="max-w-[40%]" />
             <IndexHeader-center />
@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="line h-[1px] w-full " ref="header"></div>
-    <div class="header header2" v-show="show2">
+    <div class="header header2" v-show="header2 || show2">
         <div class="content">
             <IndexHeader-left classname="max-w-[40%]" />
             <IndexHeader-center />
@@ -18,6 +18,9 @@
 </template>
 
 <script setup lang="ts">
+const props = defineProps({
+    header2: { type: Boolean, default: false }
+})
 const show2 = ref(false);
 const header = ref<null | HTMLElement>(null);
 const options = {
@@ -38,7 +41,7 @@ function obCallback(entries: IntersectionObserverEntry[]) {
 }
 
 // 开始观察元素
-onMounted(() => {
+!props.header2 && onMounted(() => {
     const observer = new IntersectionObserver(obCallback, options);
     header.value && observer.observe(header.value);
 })

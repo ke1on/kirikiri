@@ -16,7 +16,9 @@ export const useAuthStore = defineStore('auth', {
       if (res.code === true) {
         localStorage.setItem('useInfo', JSON.stringify(res.data.recordset[0]));
         this.useInfo = res.data.recordset[0];
-        ElMessage.success('登录成功！')
+         ElMessage.success('登录成功！')
+        return true
+       
       } else {
         ElMessage.error('登录失败！')
         console.log(res)
@@ -41,14 +43,15 @@ export const useAuthStore = defineStore('auth', {
       const { useInfo, code, msg } = res;
       if (code !== 200) {
         console.log(msg)
+        ElMessage.error("注册失败！")
         return false
       }
-      console.log(msg)
+      ElMessage.success("注册成功！")
       useInfo && (this.useInfo = useInfo)
       localStorage.setItem('useInfo', JSON.stringify(useInfo))
     },
-    test(e: any) {
-      console.log(e)
+    getUseIno() {
+      return this.useInfo
     }
   },
 })

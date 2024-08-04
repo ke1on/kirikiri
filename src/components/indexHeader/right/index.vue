@@ -5,8 +5,10 @@
                 :avatar="true">
                 <template #f>
                     <div :class="avatarClassName">
-                        <img class="img" v-if="loaded&&useInfo.face" :src="useInfo.face" referrerpolicy="no-referrer"></img>
-                        <img class="img" v-else src="~/assets/img/33_open.png" referrerpolicy="no-referrer"></img>
+                        <NuxtImg class="img" v-if="loaded && useInfo.face" :src="useInfo.face"
+                            referrerpolicy="no-referrer" /> 
+                        <img class="img bg-white  " v-else src="~/assets/img/33_open.png"
+                            referrerpolicy="no-referrer"></img>
 
                     </div>
                 </template>
@@ -20,7 +22,7 @@
                     <template #f>
                         <div class="flex flex-col items-center cursor-pointer">
                             <svg-bigVip fillColor="var(--textColorWhite)"></svg-bigVip>
-                            <p>大会员</p>
+                            <p  class="text">大会员</p>
                         </div>
                     </template>
                     <template #c>
@@ -35,7 +37,7 @@
                     <template #f>
                         <div class="flex flex-col items-center cursor-pointer">
                             <svg-message fillColor="var(--textColorWhite)"></svg-message>
-                            <p class="text-[var(--textColorWhite)]">消息</p>
+                            <p class="text-[var(--textColorWhite)] text"  >消息</p>
                         </div>
                     </template>
                 </kon-multiLevelMenu>
@@ -46,7 +48,7 @@
                     <template #f>
                         <div class="flex flex-col items-center cursor-pointer">
                             <svg-news fillColor="var(--textColorWhite)"></svg-news>
-                            <p>动态</p>
+                            <p class="text">动态</p>
                         </div>
                     </template>
                     <template #c>
@@ -59,11 +61,12 @@
                     <template #f>
                         <div class="flex flex-col items-center cursor-pointer">
                             <svg-collect></svg-collect>
-                            <p>收藏</p>
+                            <p class="text">收藏</p>
                         </div>
                     </template>
                     <template #c>
-                        <kon-optionalContainer class="dropdown" style="width: 30rem;"></kon-optionalContainer>
+                        <kon-optionalContainer class="dropdown" :data="collectList"
+                            style="width: 30rem;"></kon-optionalContainer>
                     </template>
                 </kon-dropdown>
             </li>
@@ -72,24 +75,12 @@
                     <template #f>
                         <div class="flex flex-col items-center cursor-pointer">
                             <svg-history></svg-history>
-                            <p>历史</p>
+                            <p class="text">历史</p>
                         </div>
                     </template>
                     <template #c>
-                        <kon-optionalContainer class="dropdown" direction="y" style="width: 20rem;">
-                            <template #f>
-                                <div class="flex cursor-pointer w-full">
-                                    <p
-                                        class="flex-grow text-center p-2  rounded-lg hover:bg-[var(--textColorBlue)] hover:text-[var(--textColorWhite)]">
-                                        视频</p>
-                                    <p
-                                        class="flex-grow text-center p-2  rounded-lg hover:bg-[var(--textColorBlue)] hover:text-[var(--textColorWhite)]">
-                                        直播</p>
-                                    <p
-                                        class="flex-grow text-center p-2  rounded-lg hover:bg-[var(--textColorBlue)] hover:text-[var(--textColorWhite)]">
-                                        专栏</p>
-                                </div>
-                            </template>
+                        <kon-optionalContainer class="dropdown" direction="y" style="width: 20rem;"
+                            :data='historyListData'>
                         </kon-optionalContainer>
                     </template>
                 </kon-dropdown>
@@ -99,7 +90,7 @@
                     <template #f>
                         <div class="flex flex-col items-center cursor-pointer">
                             <svg-invent></svg-invent>
-                            <p>创作中心</p>
+                            <p class="text">创作中心</p>
                         </div>
                     </template>
                 </kon-dropdown>
@@ -111,15 +102,17 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useAuthStore } from '~/store/auth';
+import type { videoInfoWithOwner } from '~/types/other'
+import clientOnly from '~/utils/clientOnly';
 const auth = useAuthStore()
 const useInfo = computed(() => {
     return auth.$state.useInfo
 })
 const loaded = ref(false)
 const avatarAnimationStart = ref(false)
-const setAnimationStart = ({ val }) => {
+const setAnimationStart = ({ val }: { val: any }) => {
     avatarAnimationStart.value = val
 }
 
@@ -133,13 +126,29 @@ const messageList = ref([
     { label: '系统消息' },
     { label: '我的消息' },
 ])
+const historyData = ref<Array<videoInfoWithOwner>>([])
+clientOnly(() => {
+    historyData.value = JSON.parse(localStorage.getItem('historyVideo') || '[]');
+})
+const historyListData = ref([
+    { name: '视频', dataList: historyData.value },
+    { name: '直播', dataList: [] },
+    { name: '专栏', dataList: [] }])
+const collectList = ref([
+    { name: '默认收藏夹', dataList: historyData.value, num: 120 },
+    { name: '默认收藏夹2', dataList: [], num: 120 },
+    { name: '默认收藏夹3', dataList: [], num: 120 }],)
 onMounted(() => {
     loaded.value = true
 })
 </script>
 <style scoped lang='scss'>
 @import '~/assets/css/textAnimation.scss';
-
+@media  (max-width: 1380px) {
+    .text{
+        display: none;
+    }
+}
 .right {
     flex-grow: 1;
 
@@ -185,7 +194,9 @@ onMounted(() => {
             z-index: 2;
             transition: height 0.25s ease-out;
             cursor: pointer;
+
             &>img {
+                --textColorWhite: var(--textColor3);
                 border: 2px solid var(--textColorWhite);
                 border-radius: 50%;
             }

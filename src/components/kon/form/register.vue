@@ -25,6 +25,7 @@
 </template>
 
 <script setup lang="ts">
+import type { DialogFns } from '~/types/other'
 import { useAuthStore } from "@/store/auth"
 const emit = defineEmits(['setClose']);
 
@@ -48,12 +49,17 @@ const state = reactive({
 let onsubmit = (e: Event) => {
     e.preventDefault()
 }
+const dialogFns=inject<DialogFns> ("dialogFn") 
 
 const login = async (e: Event) => {
+ 
     e.preventDefault()
     if (modle.value == 0) { modle.value = 1; return }
-    console.log('登录')
-    authStore.login({ useID: state.useID, password: state.password })
+   let res=await authStore.login({ useID: state.useID, password: state.password })
+    if (res) {
+        dialogFns?.close()
+        console.log(dialogFns)
+    }
 }
 const register = async (e: Event) => {
     e.preventDefault()

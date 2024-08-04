@@ -5,7 +5,7 @@
 *:root {
     --baseColor: #18191C;
     --textColorPink: #FF538E;
-    --textColorPink2: #FB7199;
+    --textColorPink2: #FB7199; 
     --textColorBlue: #00AEEC;
     --textColorWhite: #FFFFFF;
     --bgPink: #FFECF1;
@@ -13,11 +13,12 @@
     --textColor2: #9499A0;
     --textColor3: #C9CCD0;
     --textColor4: #212121;
+    --textColor5: #F1F2F3;
     color: var(--baseColor);
 }
 
 body {
-    min-width: 1400px;
+    min-width: 1050px;
     font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 

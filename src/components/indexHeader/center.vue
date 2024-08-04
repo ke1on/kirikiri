@@ -35,9 +35,10 @@
             </div>
             <div class="hotspot">
                 <div class="title">kirikiri热门</div>
-                <div class="hotspotCenten">
-                    <div class="item" v-for="(i, index) in 5" :key="index">
-                        {{ i }}
+                <div class="grid grid-cols-2 gap-x-4  gap-y-4 w-full">
+                    <div class="line-clamp-1 cursor-pointer border-b border-b-[rgba(0,0,0,0)] hover:border-[var(--textColor3)] " v-for="(i, index) in hotList" :key="index">
+                        <span class="mr-2 font-bold">{{ index+1 }}</span>
+                        <span class=""> {{ i.title }}</span>
                     </div>
                 </div>
             </div>
@@ -70,9 +71,9 @@ const searchHistory = ref([])
 /**
  * 搜索框失去焦点
  */
- let timer;
- const inputBlur = () => {
-    timer= setTimeout(() => {
+let timer;
+const inputBlur = () => {
+    timer = setTimeout(() => {
         if (keepShow.value) {
             inputBox.value.focus();
             keepShow.value = false;
@@ -137,16 +138,19 @@ watch(searchHistory, (n) => {
     let data = JSON.stringify(n);
     clientOnly(() => { localStorage.setItem('searchHistory', data) });
 }, { deep: true })
-onMounted(() => {
+let hotList = ref([])
+onMounted(async () => {
     clientOnly(getSearchHistory);
     needShowMore.value = needShowMoreFn()
+    hotList.value = await $fetch(`/api/videoList?num=10`)
 })
+
 </script>
 <style scoped lang='scss'>
-.center { 
+.center {
     min-width: 28%;
     padding: .25rem;
-    background-color: white; 
+    background-color: white;
     border-radius: .5rem;
     position: relative;
     -webkit-font-smoothing: antialiased;
@@ -197,16 +201,18 @@ onMounted(() => {
     width: calc(100%);
     left: 0;
     padding: .5rem;
-    background-color: #fff; 
+    background-color: #fff;
     display: flex;
     flex-direction: column;
     gap: .5rem;
     position: absolute;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-    z-index: 9999 ;
+    z-index: 9999;
+
     .title {
         display: flex;
         justify-content: space-between;
+        font-size: large;
 
         p {
             &:first-child {

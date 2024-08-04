@@ -29,6 +29,11 @@
         <svg-up :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'up'" />
         <svg-videoTV :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'videoTV'" />
         <svg-danmu :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'danmu'" />
+        <svg-err :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'err'" />
+        <svg-like :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'like'" />
+        <svg-toubi :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'toubi'" />
+        <svg-collectPlay :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'collectPlay'" />
+        <svg-share :style="`height: ${size}; width:${size};`" :fillColor="fillColor" v-if="name == 'share'" />
     </div>
 </template>
 

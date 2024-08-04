@@ -36,9 +36,12 @@
         </ul>
     </div>
     <div v-else class="userDropdown">
-        <p class="text-center text-lg">登录kirikiri，梦游幻想乡>w^</p>
-        <button class="bg-blue-400 text-white py-3 w-[80%] ml-[10%] rounded-lg" @click="openLogin">登录</button>
-
+        <kon-dialog>
+            <template #title="{open}">
+                <p class="text-center text-lg">登录kirikiri，梦游幻想乡>w^</p>
+                <button class="bg-blue-400 text-white py-3 w-[80%] ml-[10%] rounded-lg" @click="open">登录</button>
+            </template>
+        </kon-dialog>
     </div>
 </template>
 
@@ -70,11 +73,7 @@ const menuList = ref([
         icon: '',
     },
 ])
-const openLogin = (e) => {
-    e.preventDefault()
-    const element= window.kon_dialogs.filter(item => item.name == 'login')[0]
-    element.open()
-}
+
 
 </script>
 
