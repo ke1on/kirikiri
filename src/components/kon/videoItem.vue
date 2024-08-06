@@ -22,8 +22,11 @@
                     </div>
                 </div>
                 <div v-show="isPlaying" class="viodebox rounded-lg overflow-hidden relative cursor-pointer">
-                    <video ref="videoDOM" src="~/assets/moren.mp4"
-                        poster="http://i2.hdslb.com/bfs/archive/caca6b7b9b77171065204cb8be68ae30e7656a4e.jpg"></video>
+                    <iframe class="w-full aspect-video shadow-lg"
+                    :src="`//player.bilibili.com/player.html?isOutside=true&bvid=${videoData.bvid}&p=1`" scrolling="no" border="0"
+                    frameborder="no" framespacing="0" allowfullscreen="true"
+                    sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts">
+                </iframe>
                     <div
                         class="mask absolute bottom-0 left-0 text-[var(--textColorWhite)] text-sm p-[2%] flex justify-between w-full">
 

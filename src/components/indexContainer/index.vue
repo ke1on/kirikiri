@@ -9,7 +9,7 @@
             开启<br />预览
             <input id="k" type="checkbox" v-model="preview" />
         </label>
-        <div
+        <div @click="changeContainer"
             class="hover:bg-[rgba(0,0,0,.0625)] flex flex-col absolute items-center gap-1 -right-12 top-20 p-2  text-[12px] rounded-lg border select-none cursor-pointer">
             <span>换</span>
             <span>一</span>
@@ -33,6 +33,10 @@ async function addVideoList() {
     newData.forEach((i: sqlVideo) => {
         videoList.value.push(i)
     })
+} 
+async function changeContainer() { 
+    videoList.value = [];
+    videoList.value = await addList(11); 
 }
 onMounted(async () => {
     videoList.value = await addList(11);

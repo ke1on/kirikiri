@@ -34,9 +34,9 @@
         <ul class="w-[20%] flex-shrink-0 grid gap-2 grid-cols-3 grid-rows-2 ">
             <li v-for="(i, index) in rightList" class="">
 
-                <div class="flex gap-1 items-center text-sm text-[var(--baseColor)] ">
-                    <svgAll :name="i.icon" :size="i.size" fillColor="var(--textColor1)"></svgAll>
-                    <p class="text-[var(--textColor1)] px-2 xl:px-0 py-1 text-nowrap">{{ i.name }}</p>
+                <div class="flex gap-1 items-center text-sm text-[var(--baseColor)] svgItem">
+                    <svgAll :name="i.icon" :size="i.size" fillColor="var(--textColor1)" class=" cursor-pointer"></svgAll>
+                    <p class="text-[var(--textColor1)] px-2 xl:px-0 py-1 text-nowrap  cursor-pointer">{{ i.name }}</p>
                 </div>
 
             </li>
@@ -89,6 +89,12 @@ const rightList = ref([
 ])
 </script>
 <style scoped lang='scss'>
+.svgItem{
+    &:hover{
+        
+        --textColor1:var(--textColorBlue);
+    }
+}
 .line { 
     width: 1px;
     height: 100%;

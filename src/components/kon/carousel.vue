@@ -77,7 +77,7 @@ const carouselContainer = computed(() => {
  * @param {Number} du 轮播间隔时间
  * @param {Boolean} next 是否开启下一轮的自动轮播
  */
-function carouselStart(du = 2000, next = true) {
+function carouselStart(du = 8000, next = true) {
     timer = setTimeout(() => {
         carouselIndex.value++;
         if (carouselIndex.value > carouselContainer.value.length - 2) {
@@ -138,7 +138,7 @@ function back() {
 
 onMounted(() => {
     isLoad.value = true;
-    // carouselStart();
+    carouselStart();
 })
 </script>
 <style scoped lang='scss'>
