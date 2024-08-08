@@ -36,14 +36,16 @@
             <div class="hotspot">
                 <div class="title">kirikiri热门</div>
                 <div class="grid grid-cols-2 gap-x-4  gap-y-4 w-full">
-                    <div class="line-clamp-1 cursor-pointer border-b border-b-[rgba(0,0,0,0)] hover:border-[var(--textColor3)] " v-for="(i, index) in hotList" :key="index">
-                        <span class="mr-2 font-bold">{{ index+1 }}</span>
+                    <div class="line-clamp-1 cursor-pointer border-b border-b-[rgba(0,0,0,0)] hover:border-[var(--textColor3)] "
+                        v-for="(i, index) in hotList" :key="index">
+                        <span class="mr-2 font-bold">{{ index + 1 }}</span>
                         <span class=""> {{ i.title }}</span>
                     </div>
                 </div>
             </div>
         </div>
     </form>
+ 
 </template>
 
 <script setup>

@@ -15,14 +15,14 @@
                         :class="`${item.selected == true ? 'bg-[var(--textColorBlue)] text-[var(--textColorWhite)] ' : ''} 
                          flex-grow text-center p-2  rounded-lg hover:bg-[var(--textColorBlue)] hover:text-[var(--textColorWhite)]`">
                         {{ item.name }}
-                    </p> 
+                    </p>
                 </div>
             </slot>
         </div>
         <div class=" max-h-80  overflow-y-auto">
-            <slot name="c">
+            <slot name="c" :dataList="dataList">
                 <kon-videoItem2 :dataList="dataList"></kon-videoItem2>
-                
+
             </slot>
         </div>
     </div>
@@ -35,7 +35,11 @@ const props = defineProps({
         default: 'x'
     },
     data: {
-        type: Array
+        type: Array,
+        default: [
+            { name: '视频', dataList: [] },
+            { name: '直播', dataList: [] },
+            { name: '专栏', dataList: [] }]
     }
 })
 const directionBool = computed(() => {
@@ -103,6 +107,7 @@ const dataList = computed(() => dataDefault.value[selected.value].dataList)
         color: var(--textColorWhite) !important;
     }
 }
+
 .more {
     text-align: center;
     color: var(--textColor2) !important;

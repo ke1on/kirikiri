@@ -6,20 +6,23 @@
             <IndexHeader-center />
             <IndexHeader-right />
         </div>
+        <kon-bg_banner></kon-bg_banner>
     </div>
     <div class="line h-[1px] w-full " ref="header"></div>
     <div class="header header2" v-show="header2 || show2">
         <div class="content">
             <IndexHeader-left classname="max-w-[40%]" />
-            <IndexHeader-center />
+            <IndexHeader-center v-if="!header3" />
             <IndexHeader-right />
         </div>
     </div>
+
 </template>
 
 <script setup lang="ts">
 const props = defineProps({
-    header2: { type: Boolean, default: false }
+    header2: { type: Boolean, default: false },
+    header3: { type: Boolean, default: false }
 })
 const show2 = ref(false);
 const header = ref<null | HTMLElement>(null);
@@ -48,17 +51,18 @@ function obCallback(entries: IntersectionObserverEntry[]) {
 </script>
 <style scoped lang="scss">
 .header {
-    width: 100%;
-    min-height: 180px;
-    background: url('@/assets/img/header.avif') no-repeat center;
+    width: 100%;  
     background-size: cover;
     position: relative;
-
+    min-height: 155px;
+    height: 9.375vw;
     * {
         font-size: 0.8rem;
     }
 
     .content {
+        position: relative;
+        z-index: 1;
         padding: 0 1rem;
         display: flex;
         align-items: center;
@@ -68,6 +72,8 @@ function obCallback(entries: IntersectionObserverEntry[]) {
     }
 
 }
+
+
 
 .header2 {
     min-height: min-content;

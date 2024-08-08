@@ -99,14 +99,14 @@
 
 <script setup lang="ts">
 import type { sqlVideo, Owner } from '~/types/sqlTable'
-const props = defineProps<{
-    preview: boolean;
-    videoData: sqlVideo;
-    /**
-     * 方向，flase 为纵向，true 为横向
-     */
-    direction: boolean;
-}>();
+const props = withDefaults(defineProps<{
+  preview?: Boolean,
+  videoData: sqlVideo,
+  direction?: Boolean
+}>(), {
+  preview: ()=>false,
+  direction: ()=>false  
+});
 const isPlaying = ref(false);
 const videoDOM = ref<HTMLVideoElement | null>(null);
 const playerBox = ref(null);
