@@ -77,6 +77,7 @@ function obCallback(entries: IntersectionObserverEntry[]) {
 
 .header2 {
     min-height: min-content;
+    height: min-content;
     background: none;
     background-color: white;
     --textColorWhite: var(--baseColor);
