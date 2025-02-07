@@ -49,18 +49,6 @@
         background-color: var(--bg);
     }
 
-    &:hover {
-        &::before {
-            --h: 4%;
-            --w: 96%;
-        }
-
-        &::after {
-            --h: 4%;
-            bottom: calc(-1 * var(--h) * 2);
-            --w: 90%;
-            --bg: rgba(0, 0, 0, 0.05);
-        }
-    }
+    
 }
 </style>
