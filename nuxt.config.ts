@@ -5,5 +5,9 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@nuxtjs/tailwindcss', "@nuxt/image", '@pinia/nuxt',  '@element-plus/nuxt'],
   rootDir:'./src',
-  css:['~/assets/css/tailwind.css']
+  css:['~/assets/css/tailwind.css'],
+  devServer:{
+    port:8080,
+  },
+  
 })

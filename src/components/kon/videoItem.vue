@@ -1,9 +1,8 @@
 <template>
-    <div v-if="!direction" class=" box border border-[rgba(0,0,0,0)] hover:border-[rgba(0,0,0,0.1)] hover:rounded-lg" >
+    <div v-if="!direction" class=" box border border-[rgba(0,0,0,0)] hover:border-[rgba(0,0,0,0.1)] hover:rounded-lg">
         <NuxtLink :to="`/play?bvid=${videoData.bvid}`" target="_blank" class="cursor-pointer">
             <div ref="playerBox" @mouseover="play" @mouseleave="pause" class="w-full aspect-video">
-                <div v-show="!isPlaying"
-                    class="w-full h-full imgbox rounded-lg overflow-hidden relative cursor-pointer">
+                <div v-if="!isPlaying" class="w-full h-full imgbox rounded-lg overflow-hidden relative cursor-pointer">
                     <NuxtImg :src="videoData.pic" loading="lazy" referrerpolicy="no-referrer" class="rounded-lg">
                     </NuxtImg>
                     <div
@@ -21,18 +20,18 @@
                         <div>04:52</div>
                     </div>
                 </div>
-                <div v-show="isPlaying" class="viodebox rounded-lg overflow-hidden relative cursor-pointer">
+                <div v-if="isPlaying" class="viodebox rounded-lg overflow-hidden relative cursor-pointer">
                     <iframe class="w-full aspect-video shadow-lg"
-                    :src="`//player.bilibili.com/player.html?isOutside=true&bvid=${videoData.bvid}&p=1`" scrolling="no" border="0"
-                    frameborder="no" framespacing="0" allowfullscreen="true"
-                    sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts">
-                </iframe>
+                        :src="`//player.bilibili.com/player.html?isOutside=true&bvid=${videoData.bvid}&p=1`"
+                        scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"
+                        sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts">
+                    </iframe>
                     <div
                         class="mask absolute bottom-0 left-0 text-[var(--textColorWhite)] text-sm p-[2%] flex justify-between w-full">
 
                         <div class="ml-auto flex gap-1">
-                            <p>00:00</p>
-                            <p>04:52</p>
+                            <small>{{ playingTime }}</small>
+                            <small>04:52</small>
                         </div>
                     </div>
                 </div>
@@ -50,11 +49,10 @@
         </NuxtLink>
     </div>
     <div v-else>
-        <NuxtLink    :to="`/play?bvid=${videoData.bvid}`" :external="true"
+        <NuxtLink :to="`/play?bvid=${videoData.bvid}`" :external="true"
             class="flex gap-2 cursor-pointer box border border-[rgba(0,0,0,0)] hover:border-[rgba(0,0,0,0.1)] hover:rounded-lg">
             <div ref="playerBox" @mouseover="play" @mouseleave="pause" class="h-24 aspect-video">
-                <div v-show="!isPlaying"
-                    class="w-full h-full imgbox rounded-lg overflow-hidden relative cursor-pointer">
+                <div v-if="!isPlaying" class="w-full h-full imgbox rounded-lg overflow-hidden relative cursor-pointer">
                     <NuxtImg :src="videoData.pic" loading="lazy" referrerpolicy="no-referrer" class="rounded-lg">
                     </NuxtImg>
                     <div
@@ -62,15 +60,15 @@
                         <div class="ml-auto mr-2 text-[12px]">04:52</div>
                     </div>
                 </div>
-                <div v-show="isPlaying" class="viodebox rounded-lg overflow-hidden relative cursor-pointer">
+                <div v-if="isPlaying" class="viodebox rounded-lg overflow-hidden relative cursor-pointer">
                     <video ref="videoDOM" src="~/assets/moren.mp4"
                         poster="http://i2.hdslb.com/bfs/archive/caca6b7b9b77171065204cb8be68ae30e7656a4e.jpg"></video>
                     <div
                         class="mask absolute bottom-0 left-0 text-[var(--textColorWhite)] text-sm p-[2%] flex justify-between w-full">
 
                         <div class="ml-auto mr-2 flex gap-1 text-[12px]">
-                            <p>00:00</p>
-                            <p>04:52</p>
+                            <small>00:00</small>
+                            <small>04:52</small>
                         </div>
                     </div>
                 </div>
@@ -100,17 +98,50 @@
 <script setup lang="ts">
 import type { sqlVideo, Owner } from '~/types/sqlTable'
 const props = withDefaults(defineProps<{
-  preview?: Boolean,
-  videoData: sqlVideo,
-  direction?: Boolean
+    preview?: Boolean,
+    videoData: sqlVideo,
+    direction?: Boolean
 }>(), {
-  preview: ()=>false,
-  direction: ()=>false  
+    preview: () => false,
+    direction: () => false
 });
 const isPlaying = ref(false);
 const videoDOM = ref<HTMLVideoElement | null>(null);
 const playerBox = ref(null);
 const ownersInfo = await getOwnersInfo();
+const playingTime = ref('00:00')
+let playingTimer: any
+const updatePlayingTime = () => {
+    playingTime.value = '00:00'
+    let time = "00:00:00"
+    clearInterval(playingTimer)
+    let [h, m, s] = time.split(":").map(Number)
+    playingTimer = setInterval(() => {
+        s++
+        s > 60 && ((s = 0) || m++)
+        m > 60 && ((m = 0) || h++)
+        let fn = (a: number) => {
+            let b = a.toString()
+            b.length == 1 && (b = '0' + b) || b
+            return b
+        }
+        let m2 = fn(m)
+        let s2 = fn(s)
+        let h2;
+        if (h == 0) { playingTime.value = ` ${m2}:${s2}:` }else{
+            h2 = fn(h)
+            playingTime.value = `${h2}:${m2}:${s2}:`
+        }
+
+
+    }, 1000);
+}
+
+watch(isPlaying, () => {
+    if (isPlaying.value) {
+        updatePlayingTime()
+    }
+})
 const formatToWan = (num: any,) => {
     if (num < 10000) {
         return num;

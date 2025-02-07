@@ -38,8 +38,7 @@ const options = {
 function obCallback(entries:IntersectionObserverEntry[]) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            // 元素进入视口时执行的代码
-            console.log('元素进入视口了！');
+            // 元素进入视口时执行的代码 
             emit('onLoading');
         }
     });

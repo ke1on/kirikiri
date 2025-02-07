@@ -12,6 +12,7 @@
   "dependencies": {
     "@nuxt/image": "^1.7.0",
     "axios": "^1.7.2",
+    "caniuse-lite": "^1.0.30001698",
     "jsonwebtoken": "^9.0.2",
     "mssql": "^11.0.1",
     "nuxt": "^3.12.3",

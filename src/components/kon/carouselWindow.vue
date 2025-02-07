@@ -1,45 +1,7 @@
 <template>
      
     <div   class='carousel flex flex-col w-full h-full pb-20 relative  overflow-hidden rounded-t-lg'>
-        <!-- 图片区域 -->
-        <div class="flex  h-[80%]"
-            :style="`transform: translateX(${carouselIndex * -100}%);transition: transform ${carouselTransition / 1000}s;`">
-            <kon-imgLoad class="flex-shrink-0 w-full h-full" v-for="(i, index) in carouselContainer" :key="index"
-                :pic="i.pic" :ref="(el: any) => { imgrefs.push(el) }" />
-        </div>
-        <!-- 颜色区域 -->
-        <div class="flex-grow relative  rounded-b-lg" v-if="isLoad"
-            :style="`background:${imgrefs[carouselIndex].averageColor} ;`">
-
-            <div class="h-[100%] bottom-full w-full absolute" v-if="isLoad"
-                :style="` background: linear-gradient(to top,${imgrefs[carouselIndex].averageColor} , rgba(0, 0, 0, 0.01));`">
-            </div>
-            <!-- 视频信息 -->
-            <div class="absolute top-0 h-full w-full p-2  flex flex-col pb-3">
-                <div class="flex">
-                    <div class="text-[var(--textColorWhite)] line-clamp-2 overflow-hidden w-[80%] indent-4">
-                        <p>{{ carouselContainer[carouselIndex].title }}</p>
-                    </div>
-                    <div class="flex ml-auto gap-4">
-                        <div class="w-fit h-fit p-1 rounded-lg  bg-[rgba(255,255,255,.125)] hover:bg-[rgba(255,255,255,.25)] cursor-pointer rotate-180"
-                            @click="back">
-                            <svgAll name="fold" fillColor="var(--textColorWhite)" size="1.2rem" />
-                        </div>
-                        <div class="w-fit h-fit p-1 rounded-lg  bg-[rgba(255,255,255,.125)] hover:bg-[rgba(255,255,255,.25)] cursor-pointer "
-                            @click="next">
-                            <svgAll name="fold" fillColor="var(--textColorWhite) " size="1.2rem" />
-                        </div>
-                    </div>
-                </div>
-                <div class="flex items-center gap-2 mt-auto">
-                    <div v-for="(i, index) in videoList"
-                        :class="`   w-4 h-4 overflow-hidden rounded-full  bg-[rgba(255,255,255,.25)] relative ${dotIndex == index ? ' dot' : ' '}`">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        <div class="w-full h-full bg-slate-100"></div>
     </div>
 </template>
 
