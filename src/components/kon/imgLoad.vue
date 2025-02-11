@@ -1,18 +1,22 @@
 <template>
-    <div>
+    <NuxtLink :to="`/play?bvid=${bvid}`" target="_blank" >
         <img ref="image" class="w-full h-full object-fill"  
             :src="pic"
             referrerpolicy="no-referrer" crossOrigin="anonymous" /> 
-    </div>
+    </NuxtLink>
 </template>
 
 <script setup>
-// 该组件创建意义在于获取图片的平均色值
+// 该组件创建意义在于获取图片的平均颜色值
 import { ref, onMounted } from 'vue';
 const props = defineProps({
     pic: {
         type: String,
         default: '//i0.hdslb.com/bfs/banner/aba39df71f60f6b55d0a246ca5ee76a62248c2e5.png@976w_550h_1c_!web-home-carousel-cover'
+    },
+    bvid:{
+        type: String,
+        default: ''
     }
 }); 
 const image = ref(null);

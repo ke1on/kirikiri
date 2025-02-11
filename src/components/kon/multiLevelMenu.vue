@@ -11,11 +11,14 @@
                 <svgAll name='fold' size="1.5rem" fillColor="var(--baseColor)" v-if="needIcon" />
             </div>
         </slot>
+
         <slot name="c" v-if="menuList.length">
             <div :class="calssName" v-if="showMore">
-
-                <div>
-                    <div v-for="(i, index) in menuList" class="flex gap-1 items-center px-2 py-1 cursor-pointer">
+                <div name="goLogin" v-if="menuList.length && !isLogin && top">
+                    <index-header-right-goLogin :title="title" />
+                </div>
+                <div v-else>
+                    <div  v-for="(i, index) in menuList" class="hover flex gap-1 items-center px-2 py-1 cursor-pointer">
                         <svgAll :name='i.icon' fillColor="var(--baseColor)" v-if="i.icon"></svgAll>
                         <span class="flex-shrink-0">{{ i.label }}</span>
                     </div>
@@ -33,6 +36,8 @@ const props = defineProps({
     needIcon: { type: Boolean, default: true },
     title: { type: String, default: '推荐服务' },
     titleIcon: { type: String, default: 'manuscript' },
+    isLogin: { type: Boolean, default: false },
+    top: { type: true, default: false }
 })
 const calssName = computed(() => {
     let a = props.direction.toString().toLocaleUpperCase()
@@ -55,16 +60,16 @@ const calssName = computed(() => {
         min-width: 8rem;
         box-shadow: 1px 1px 5px rgba(0, 0, 0, .3);
 
-        &>div:hover {
-            border-radius: .25rem;
-            cursor: pointer;
-            background-color: rgb(236, 236, 236);
-        }
+        
     }
 
 
 }
-
+.hover:hover {
+            border-radius: .25rem;
+            cursor: pointer;
+            background-color: rgb(236, 236, 236);
+        }
 .directionL {
     right: 100%;
     transform: translateY(-50%);

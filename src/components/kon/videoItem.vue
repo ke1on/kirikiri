@@ -97,6 +97,7 @@
 
 <script setup lang="ts">
 import type { sqlVideo, Owner } from '~/types/sqlTable'
+import numToWan from '~/utils/numToWan'; 
 const props = withDefaults(defineProps<{
     preview?: Boolean,
     videoData: sqlVideo,
@@ -146,8 +147,7 @@ const formatToWan = (num: any,) => {
     if (num < 10000) {
         return num;
     }
-    const wan = (Number(num) / 10000).toFixed(2); // 保留两位小数
-    return `${wan}万`;
+    return numToWan(num);
 }
 const play = () => {
     if (!props.preview) return;

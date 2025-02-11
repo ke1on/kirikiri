@@ -2,15 +2,15 @@
     <div :class='className'>
         <div :class="className2">
             <slot name="f">
-                <div :class="className3" v-if="directionBool">
+                <div :class="className3" v-show="directionBool">
                     <p :class="`${item.selected == true ? 'bg-[var(--textColorBlue)] b' : ''} 
                     flex justify-between items-center p-2 cursor-pointer rounded-lg hover:bg-[var(--textColorBlue)]  a`"
                         v-for="(item, index) in dataDefault" @click="select(index)">
                         <span class="truncate w-[6rem]">{{ item.name }}</span>
-                        <span class="text-[var(--textColor3)]   small" v-if="item.num">{{ item.num }}</span>
+                        <span class="text-[var(--textColor3)]   small" v-show="item.num">{{ item.num }}</span>
                     </p>
                 </div>
-                <div class="flex cursor-pointer w-full gap-2 mb-2" v-if="!directionBool">
+                <div class="flex cursor-pointer w-full gap-2 mb-2" v-show="!directionBool">
                     <p v-for="(item, index) in dataDefault" @click="select(index)"
                         :class="`${item.selected == true ? 'bg-[var(--textColorBlue)] text-[var(--textColorWhite)] ' : ''} 
                          flex-grow text-center p-2  rounded-lg hover:bg-[var(--textColorBlue)] hover:text-[var(--textColorWhite)]`">
@@ -74,8 +74,7 @@ const select = (index) => {
     dataDefault.value.forEach((item, index) => {
         item.selected = false
     })
-    dataDefault.value[index].selected = true
-    console.log(dataDefault.value)
+    dataDefault.value[index].selected = true 
 }
 const selected = computed(() => {
     let a = 0

@@ -1,6 +1,6 @@
 <!-- 初始化窗口 -->
 <template>
-    <div class=" box border border-[rgba(0,0,0,0)] hover:border-[rgba(0,0,0,0.1)] hover:rounded-lg">
+    <div v-if="!direction" class=" box border border-[rgba(0,0,0,0)] hover:border-[rgba(0,0,0,0.1)] hover:rounded-lg">
         <div class="cursor-pointer">
             <div ref="playerBox" class="w-full aspect-video">
                 <div class="w-full h-full imgbox rounded-lg overflow-hidden relative cursor-pointer">
@@ -18,10 +18,39 @@
             </div>
         </div>
     </div>
+    <div v-else
+        class="flex gap-2 cursor-pointer box border border-[rgba(0,0,0,0)] hover:border-[rgba(0,0,0,0.1)] hover:rounded-lg">
+        <div ref="playerBox" class="h-24 aspect-video">
+            <div class="w-full h-full imgbox rounded-lg overflow-hidden relative cursor-pointer">
+                <div class="w-full h-full bg-slate-100">
+                </div>
+            </div>
+        </div>
+        <div class="text-[.8rem] py-1 w-full flex flex-col justify-between">
+            <div class="h-[3rem]  w-full bg-slate-100"> </div>
+            <div class="text-sm flex items-center gap-1 text-[var(--textColor2)]">
+                <div class="h-4 w-full bg-slate-100">
 
+                </div>
+            </div>
+            <div class="flex gap-2 text-[var(--textColor2)]">
+                <div class="  h-4 bg-slate-100 w-1/2">
+
+                </div>
+                <div class=" h-4 bg-slate-100 w-1/2">
+
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script setup lang="ts">
+const props=withDefaults(defineProps<{
+    direction?: boolean;
+}>(),{
+    direction:false
+})
 </script>
 <style scoped lang='scss'>
 .mask {
@@ -49,6 +78,6 @@
         background-color: var(--bg);
     }
 
-    
+
 }
 </style>

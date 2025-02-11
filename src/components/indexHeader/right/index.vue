@@ -6,7 +6,7 @@
                 <template #f>
                     <div :class="avatarClassName">
                         <NuxtImg class="img" v-if="loaded && useInfo.face" :src="useInfo.face"
-                            referrerpolicy="no-referrer" /> 
+                            referrerpolicy="no-referrer" />
                         <img class="img bg-white  " v-else src="~/assets/img/33_open.png"
                             referrerpolicy="no-referrer"></img>
 
@@ -14,6 +14,7 @@
                 </template>
                 <template #c>
                     <IndexHeader-right-item1 class="dropdown" />
+
                 </template>
             </kon-dropdown>
             <li class="item avatarCopy via-gray-900"></li>
@@ -22,7 +23,7 @@
                     <template #f>
                         <div class="flex flex-col items-center cursor-pointer">
                             <svg-bigVip fillColor="var(--textColorWhite)"></svg-bigVip>
-                            <p  class="text">大会员</p>
+                            <p class="text">大会员</p>
                         </div>
                     </template>
                     <template #c>
@@ -33,13 +34,15 @@
 
             </li>
             <li class="item">
-                <kon-multiLevelMenu :menuList="messageList" direction="b" class="text-[var(--baseColor)]">
+                <kon-multiLevelMenu :menuList="messageList" direction="b" class="text-[var(--baseColor)]" :isLogin="isLogin" :top="true" title="消息">
                     <template #f>
                         <div class="flex flex-col items-center cursor-pointer">
                             <svg-message fillColor="var(--textColorWhite)"></svg-message>
-                            <p class="text-[var(--textColorWhite)] text"  >消息</p>
+                            <p class="text-[var(--textColorWhite)] text">消息</p>
                         </div>
                     </template>
+                   
+
                 </kon-multiLevelMenu>
             </li>
             <li class="item">
@@ -52,7 +55,9 @@
                         </div>
                     </template>
                     <template #c>
-                        <IndexHeader-right-item3 class="dropdown" style="width: 25rem;padding-bottom: 0;" />
+                        <IndexHeader-right-item3 class="dropdown" style="width: 25rem;padding-bottom: 0;"
+                            v-if="isLogin" />
+                        <index-header-right-goLogin :title="'动态'" v-else />
                     </template>
                 </kon-dropdown>
             </li>
@@ -65,12 +70,14 @@
                         </div>
                     </template>
                     <template #c>
-                        <kon-optionalContainer class="dropdown" :data="collectList"
-                            style="width: 30rem;"></kon-optionalContainer>
+                        <kon-optionalContainer class="dropdown" :data="collectList" style="width: 30rem;"
+                            v-if="isLogin"></kon-optionalContainer>
+                        <index-header-right-goLogin :title="'动态'" v-else />
+
                     </template>
                 </kon-dropdown>
             </li>
-            <li class="item">
+            <li class="item" @mousemove="getHistoryData()">
                 <kon-dropdown :needIndent="true">
                     <template #f>
                         <div class="flex flex-col items-center cursor-pointer">
@@ -80,8 +87,9 @@
                     </template>
                     <template #c>
                         <kon-optionalContainer class="dropdown" direction="y" style="width: 20rem;"
-                            :data='historyListData'>
+                            :data='historyListData' v-if="isLogin">
                         </kon-optionalContainer>
+                        <index-header-right-goLogin :title="'历史'" v-else />
                     </template>
                 </kon-dropdown>
             </li>
@@ -96,7 +104,7 @@
                 </kon-dropdown>
             </li>
             <li class="item">
-                <button class="bg-[var(--textColorPink2)] px-8 py-2 text-white rounded-2xl">投稿</button>
+                <button class="b1 bg-[var(--textColorPink2)] px-8 py-2 text-white rounded-2xl">投稿</button>
             </li>
         </ul>
     </div>
@@ -109,6 +117,9 @@ import clientOnly from '~/utils/clientOnly';
 const auth = useAuthStore()
 const useInfo = computed(() => {
     return auth.$state.useInfo
+})
+const isLogin = computed(() => {
+    return auth.isLogin
 })
 const loaded = ref(false)
 const avatarAnimationStart = ref(false)
@@ -127,13 +138,19 @@ const messageList = ref([
     { label: '我的消息' },
 ])
 const historyData = ref<Array<videoInfoWithOwner>>([])
-clientOnly(() => {
-    historyData.value = JSON.parse(localStorage.getItem('historyVideo') || '[]');
-})
+
 const historyListData = ref([
     { name: '视频', dataList: historyData.value },
     { name: '直播', dataList: [] },
     { name: '专栏', dataList: [] }])
+function getHistoryData() {
+    historyData.value = []
+    clientOnly(() => {
+        historyData.value = JSON.parse(localStorage.getItem('historyVideo') || '[]');
+        historyListData.value[0].dataList = historyData.value
+    })
+}
+getHistoryData()
 const collectList = ref([
     { name: '默认收藏夹', dataList: historyData.value, num: 120 },
     { name: '默认收藏夹2', dataList: [], num: 120 },
@@ -144,11 +161,16 @@ onMounted(() => {
 </script>
 <style scoped lang='scss'>
 @import '~/assets/css/textAnimation.scss';
-@media  (max-width: 1380px) {
-    .text{
+@media (max-width: 1380px) {
+    .text {
         display: none;
     }
+
+    .b1 {
+        text-wrap: nowrap;
+    }
 }
+
 .right {
     flex-grow: 1;
 

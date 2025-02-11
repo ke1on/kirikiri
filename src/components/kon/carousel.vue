@@ -5,7 +5,7 @@
         <div class="flex  h-[80%]"
             :style="`transform: translateX(${carouselIndex * -100}%);transition: transform ${carouselTransition / 1000}s;`">
             <kon-imgLoad class="flex-shrink-0 w-full h-full" v-for="(i, index) in carouselContainer" :key="index"
-                :pic="i.pic" :ref="(el: any) => { imgrefs.push(el) }" />
+                :pic="i.pic" :bvid="i.bvid" :ref="(el: any) => { imgrefs.push(el) }" />
         </div>
         <!-- 颜色区域 -->
         <div class="flex-grow relative  rounded-b-lg" v-if="isLoad"
@@ -53,8 +53,7 @@ const props = defineProps<{
 }>()
 const videoList = computed(() => {
     return props.videoList;
-})
-
+}) 
 const dotIndex = computed(() => {
     if (carouselIndex.value == carouselContainer.value.length - 2) return videoList.value.length - 1;
     if (carouselIndex.value == carouselContainer.value.length - 1) return 0;

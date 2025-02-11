@@ -57,8 +57,7 @@ const login = async (e: Event) => {
     if (modle.value == 0) { modle.value = 1; return }
    let res=await authStore.login({ useID: state.useID, password: state.password })
     if (res) {
-        dialogFns?.close()
-        console.log(dialogFns)
+        dialogFns?.close() 
     }
 }
 const register = async (e: Event) => {

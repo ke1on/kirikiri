@@ -24,8 +24,7 @@ const dialog = ref<HTMLElement | null>(null)
 function close() { 
         show.value = false
         //删除dom
-        let dialog = document.querySelectorAll('.dialog')
-        console.log(dialog)
+        let dialog = document.querySelectorAll('.dialog') 
          dialog?.forEach(item => {
             item.remove()
         })

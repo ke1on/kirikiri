@@ -4,14 +4,10 @@
         <kon-carouselWindow class="col-span-2 row-span-2" />
         <kon-videoItemWindow v-for="i in 11"></kon-videoItemWindow> 
     </div>
-    <div class='indexContainer grid  gap-4 2xl:grid-cols-5 grid-cols-4 relative' v-if="loaded">
-
+    
+    <div class='indexContainer grid  gap-4 2xl:grid-cols-5 grid-cols-4 relative' v-if="loaded"> 
        <kon-carousel :videoList="carouselVideoList" class="col-span-2 row-span-2"></kon-carousel>
-            <kon-videoItem :preview="preview" :direction="false" v-for="i in videoList" :videoData="i"></kon-videoItem>
-
-
-
-
+            <kon-videoItem :preview="preview" :direction="false" v-for="i in videoList" :videoData="i"></kon-videoItem> 
         <div class="loaderBox flex justify-center w-full 2xl:col-span-5 col-span-4  p-8">
             <kon-loader @onLoading='addVideoList'></kon-loader>
         </div>
@@ -52,8 +48,11 @@ async function addVideoList() {
     })
 }
 async function changeContainer() {
+    
+    loaded.value=false;
     videoList.value = [];
     videoList.value = await addList(11);
+    loaded.value=true
 }
 onMounted(async () => {
     videoList.value = await addList(11);

@@ -1,8 +1,10 @@
 <template>
     <ul :class="`left ` + className">
-        <li v-for="(i, index) in headerListLeft" class="flex items-center gap-1">
-            <SvgAll class="-mt-1" v-if="i.icon" :name="i.icon" fillColor="var(--textColorWhite)" />
-            <span>{{ i.name }}</span>
+        <li v-for="(i, index) in headerListLeft">
+            <nuxt-link class="flex items-center gap-1" :to="i.path">
+                <SvgAll class="-mt-1" v-if="i.icon" :name="i.icon" fillColor="var(--textColorWhite)" />
+                <span>{{ i.name }}</span>
+            </nuxt-link>
         </li>
     </ul>
 </template>
@@ -55,14 +57,15 @@ const headerListLeft = [
 @media (max-width: 1280px) {
     .left {
         li {
-            &:nth-of-type(8){
+            &:nth-of-type(8) {
                 display: none;
             }
-            &:nth-of-type(9){
+
+            &:nth-of-type(9) {
                 display: none;
             }
 
         }
     }
-} 
+}
 </style>

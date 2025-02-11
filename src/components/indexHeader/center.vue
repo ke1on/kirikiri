@@ -36,16 +36,19 @@
             <div class="hotspot">
                 <div class="title">kirikiri热门</div>
                 <div class="grid grid-cols-2 gap-x-4  gap-y-4 w-full">
-                    <div class="line-clamp-1 cursor-pointer border-b border-b-[rgba(0,0,0,0)] hover:border-[var(--textColor3)] "
-                        v-for="(i, index) in hotList" :key="index">
-                        <span class="mr-2 font-bold">{{ index + 1 }}</span>
-                        <span class=""> {{ i.title }}</span>
+                    <div v-for="(i, index) in hotList" :key="index">
+                        <nuxt-link :to="{ path: '/play', query: { bvid: i.bvid } }"
+                            class="line-clamp-1 cursor-pointer border-b border-b-[rgba(0,0,0,0)] hover:border-[var(--textColor3)] ">
+                            <span class="mr-2 font-bold">{{ index + 1 }}</span>
+                            <span> {{ i.title }}</span>
+                        </nuxt-link>
                     </div>
+
                 </div>
             </div>
         </div>
     </form>
- 
+
 </template>
 
 <script setup>
@@ -120,9 +123,7 @@ const addHistory = () => {
  */
 const searchAction = () => {
     keepShow.value = true
-    addHistory()
-    console.log('进行了搜索')
-    console.log(needShowMore.value)
+    addHistory() 
 }
 /**
  * 监听搜索记录

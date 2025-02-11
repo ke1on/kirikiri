@@ -1,19 +1,19 @@
 <template>
-    <div class='play'>
+    <div class='play min-w-screen-xl'>
         <indexHeader :header2="true"></indexHeader>
-        <div class="play-container  px-[9%]  flex gap-8">
+        <div class="play-container  min-w-screen-xl  flex gap-8 justify-center  max-xl:gap-4">
 
-            <div class="w-[75%]  flex-shrink-0">
+            <div class="w-[60vw] flex-shrink-0  min-w-[800px] max-xl:ml-2">
                 <div class="play-title w-full py-4 pb-2 h-[6rem]">
                     <p class=" text-lg font-[600]">{{ videoData.title }}</p>
                     <div class="text-[.8rem] text-gray-400 flex gap-4 py-2">
                         <div class="flex items-center gap-1">
                             <svgAll name="videoTV" />
-                            <span>{{ formatToWan(videoData.view) }}</span>
+                            <span>{{ numToWan(videoData.view) }}</span>
                         </div>
                         <div class="flex items-center gap-1">
                             <svgAll name="danmu" />
-                            <span>{{ formatToWan(videoData.danmaku) }}</span>
+                            <span>{{ numToWan(videoData.danmaku) }}</span>
                         </div>
                         <div>
                             2024-08-03 08:43:50
@@ -31,35 +31,34 @@
                 </iframe>
 
                 <ul class="flex gap-8 py-4 text-[var(--textColor1)] border-b  border-[var(--textColor3)]">
-                    <li class="flex gap-2 items-center">
-                        <svgAll class="cursor-pointer svg" name="like" fillColor="var(--textColor1)" size="2rem" />
-                        <span class="-mb-1">{{ videoData.like }}</span>
+                    <li class="flex gap-2 items-center svg">
+                        <svgAll class="cursor-pointer  " name="like" fillColor="var(--textColor1)" size="2rem" />
+                        <span class="-mb-1">{{ numToWan(videoData.like) }}</span>
                     </li>
-                    <li class="flex gap-2 items-center">
-                        <svgAll class="cursor-pointer svg" name="toubi" fillColor="var(--textColor1)" size="2rem" />
-                        <span class="-mb-1">{{ videoData.like }}</span>
+                    <li class="flex gap-2 items-center svg">
+                        <svgAll class="cursor-pointer  " name="toubi" fillColor="var(--textColor1)" size="2rem" />
+                        <span class="-mb-1">{{ numToWan(videoData.like) }}</span>
                     </li>
-                    <li class="flex gap-2 items-center">
-                        <svgAll class="cursor-pointer svg" name="collectPlay" fillColor="var(--textColor1)"
-                            size="2rem" />
-                        <span class="-mb-1">{{ videoData.like }}</span>
+                    <li class="flex gap-2 items-center svg">
+                        <svgAll class="cursor-pointer  " name="collectPlay" fillColor="var(--textColor1)" size="2rem" />
+                        <span class="-mb-1">{{ numToWan(videoData.like) }}</span>
                     </li>
-                    <li class="flex gap-2 items-center">
-                        <svgAll class="cursor-pointer svg" name="share" fillColor="var(--textColor1)" size="2rem" />
-                        <span class="-mb-1">{{ videoData.like }}</span>
+                    <li class="flex gap-2 items-center svg">
+                        <svgAll class="cursor-pointer  " name="share" fillColor="var(--textColor1)" size="2rem" />
+                        <span class="-mb-1">{{ numToWan(videoData.like) }}</span>
                     </li>
                 </ul>
                 <div class="text-sm my-4">
                     没有简介~
                 </div>
                 <ul class="tags flex gap-2  border-b py-4 border-[var(--textColor3)]">
-                    <li class="py-1 px-2 rounded-full bg-[var(--textColor5)]">生活</li>
-                    <li class="py-1 px-2 rounded-full bg-[var(--textColor5)]">游戏</li>
-                    <li class="py-1 px-2 rounded-full bg-[var(--textColor5)]">单机游戏</li>
-                    <li class="py-1 px-2 rounded-full bg-[var(--textColor5)]">单机游戏</li>
-                    <li class="py-1 px-2 rounded-full bg-[var(--textColor5)]">单机游戏</li>
-                    <li class="py-1 px-2 rounded-full bg-[var(--textColor5)]">单机游戏</li>
-                    <li class="py-1 px-2 rounded-full bg-[var(--textColor5)]">单机游戏</li>
+                    <li class="py-1 px-4 rounded-full bg-[var(--textColor5)] text-[var(--textColor1)]">生活</li>
+                    <li class="py-1 px-4 rounded-full bg-[var(--textColor5)] text-[var(--textColor1)]">游戏</li>
+                    <li class="py-1 px-4 rounded-full bg-[var(--textColor5)] text-[var(--textColor1)]">单机游戏</li>
+                    <li class="py-1 px-4 rounded-full bg-[var(--textColor5)] text-[var(--textColor1)]">单机游戏</li>
+                    <li class="py-1 px-4 rounded-full bg-[var(--textColor5)] text-[var(--textColor1)]">单机游戏</li>
+                    <li class="py-1 px-4 rounded-full bg-[var(--textColor5)] text-[var(--textColor1)]">单机游戏</li>
+                    <li class="py-1 px-4 rounded-full bg-[var(--textColor5)] text-[var(--textColor1)]">单机游戏</li>
                 </ul>
                 <div class="flex gap-12 my-2">
                     <p>评论<span class="text-[var(--textColor1)] ml-1 text-[12px]">{{ videoData.like }}</span></p>
@@ -82,10 +81,9 @@
                 </div>
                 <div class="text-[var(--textColor1)] text-sm text-center mt-20">
                     <p>并没有爬评论哦~</p>
-                    <p>由于项目建立之处爬取数据时省略了许多字段，导致该页面许多数据为空，只能用点赞数代替QAQ</p>
                 </div>
             </div>
-            <div class="w-[24%]  h-full via-gray-400 max-w-[25%]">
+            <div class="w-[20vw] min-w-[21rem]  h-full via-gray-400 max-w-[25%]  ">
                 <div class="owner-container h-[6rem] py-4 flex gap-4">
 
                     <div class="avatar h-full flex items-center">
@@ -117,10 +115,12 @@
                     </label>
                 </div>
                 <div class="line h-[1px] w-full bg-slate-200"></div>
-                <div class="flex flex-col gap-4 mt-4" v-if="videoList.length > 0">
-                    <kon-videoItem :preview="preview" v-for="i in videoList" :videoData="i"
+                <div class="flex flex-col gap-4 mt-4"  >
+                    
+                    <kon-videoItem   :preview="preview" v-for="i in videoList" :videoData="i"
                         :direction="true"></kon-videoItem>
-                    <div
+                        <kon-videoItemWindow :direction="true" v-if="!isLoaded" v-for="i in 8"></kon-videoItemWindow>
+                    <div @click="addMore()"
                         class="text-sm text-[var(--textColor1)] bg-[var(--textColor5)] py-2 text-center rounded-lg cursor-pointer hover:text-[var(--textColorBlue)]">
                         查看更多</div>
                 </div>
@@ -131,28 +131,35 @@
 
 <script setup lang='ts'>
 import type { sqlVideo, Owner } from '~/types/sqlTable'
-import type { videoInfoWithOwner } from '~/types/other'
-import { useRoute } from 'nuxt/app';
+import type { videoInfoWithOwner } from '~/types/other' 
 import { useAuthStore } from "~/store/auth"
+import numToWan from '~/utils/numToWan';
 const auth = useAuthStore();
 const preview = ref(false);
 const route = useRoute();
-const { query } = route;
+const { query } = route; 
+// console.log(location.href,query)
+setTimeout(() => {
+    console.log(query)
+}, 1000);
 const { bvid } = query;
 const videoData = await $fetch<sqlVideo>("/api/videoDetails?bvid=" + bvid);
 const ownerData = await $fetch<Owner>("/api/videoOwners?mid=" + videoData.mid);
+const isLoaded = ref(false);
 let videoList = ref<Array<sqlVideo>>([])
 async function addList(num: number) {
-    return await $fetch<Array<sqlVideo>>(`/api/videoList?num=${num}`);
+    isLoaded.value = false;
+    let data = await $fetch<Array<sqlVideo>>(`/api/videoList?num=${num}`);
+    setTimeout(() => {
+        isLoaded.value = true;
+    }, 1000);
+    return data
 }
+const  addMore = async () => {
+    let data= await addList(8);
+    videoList.value = videoList.value.concat( data);
+}   
 
-const formatToWan = (num: any,) => {
-    if (num < 10000) {
-        return num;
-    }
-    const wan = (Number(num) / 10000).toFixed(2); // 保留两位小数
-    return `${wan}万`;
-}
 
 onMounted(async () => {
     videoList.value = await addList(8);
@@ -162,9 +169,9 @@ onMounted(async () => {
     if (historyVideo.find((i, index) => i.video.bvid === videoData.bvid)) {
         //删除该记录并重新添加
         historyVideo.splice(historyVideo.findIndex((i) => i.video.bvid === videoData.bvid), 1)
-        historyVideo.unshift({video:videoData,owner:ownerData});
+        historyVideo.unshift({ video: videoData, owner: ownerData });
     } else {
-        historyVideo.unshift({video:videoData,owner:ownerData})
+        historyVideo.unshift({ video: videoData, owner: ownerData })
     }
 
     localStorage.setItem("historyVideo", JSON.stringify(historyVideo))
@@ -174,6 +181,8 @@ onMounted(async () => {
 .svg {
     &:hover {
         --textColor1: var(--textColorBlue) !important;
+        color: var(--textColorBlue);
+        cursor: pointer;
     }
 }
 </style>

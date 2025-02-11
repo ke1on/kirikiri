@@ -9,6 +9,7 @@ export const useAuthStore = defineStore('auth', {
       face: '',
       useID: '',
     } as useInfo,
+    isLogin: false,
   }),
   actions: {
     async login(credentials: loginBody) {
@@ -16,9 +17,10 @@ export const useAuthStore = defineStore('auth', {
       if (res.code === true) {
         localStorage.setItem('useInfo', JSON.stringify(res.data.recordset[0]));
         this.useInfo = res.data.recordset[0];
-         ElMessage.success('登录成功！')
+        ElMessage.success('登录成功！');
+        this.isLogin = true
         return true
-       
+
       } else {
         ElMessage.error('登录失败！')
         console.log(res)
@@ -33,10 +35,11 @@ export const useAuthStore = defineStore('auth', {
       localStorage.removeItem('useInfo')
     },
     initialize() {
-      const useInfoStr = localStorage.getItem('useInfo');
+      let useInfoStr  = localStorage.getItem('useInfo');
       if (useInfoStr) {
-        this.useInfo = JSON.parse(useInfoStr);
-      } 
+        let a = JSON.parse(useInfoStr) as loginBody;
+        this.login(a)
+      }
     },
     async register(credentials: registerBody) {
       const res = await $fetch("/api/auth/register", { method: "POST", body: credentials }) as registerResponse
