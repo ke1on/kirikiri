@@ -130,6 +130,9 @@
 </template>
 
 <script setup lang='ts'>
+useHead({
+    title: "正在加载..."
+})
 import type { sqlVideo, Owner } from '~/types/sqlTable'
 import type { videoInfoWithOwner } from '~/types/other' 
 import { useAuthStore } from "~/store/auth"
@@ -137,15 +140,14 @@ import numToWan from '~/utils/numToWan';
 const auth = useAuthStore();
 const preview = ref(false);
 const route = useRoute();
-const { query } = route; 
-// console.log(location.href,query)
-setTimeout(() => {
-    console.log(query)
-}, 1000);
+const { query } = route;  
 const { bvid } = query;
 const videoData = await $fetch<sqlVideo>("/api/videoDetails?bvid=" + bvid);
 const ownerData = await $fetch<Owner>("/api/videoOwners?mid=" + videoData.mid);
 const isLoaded = ref(false);
+useHead({
+    title: videoData.title
+})
 let videoList = ref<Array<sqlVideo>>([])
 async function addList(num: number) {
     isLoaded.value = false;

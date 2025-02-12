@@ -11,7 +11,8 @@
 <script setup lang="ts">
 import { ElMessage } from "element-plus"
 import { useAuthStore } from '~/store/auth'
-import clientOnly from '~/utils/clientOnly'
+import clientOnly from '~/utils/clientOnly' 
+useHead({ title: 'kirikiri - wink <3' })
 const auth = useAuthStore()
 const useInfo = computed(() => {
     return auth.getUseIno()
@@ -23,6 +24,6 @@ clientOnly(() => {
         type: "success",
         duration: 2000,
     })
-})
+}) 
 </script>
 <style scoped></style>
