@@ -57,7 +57,8 @@ async function changeContainer() {
 onMounted(async () => {
     videoList.value = await addList(11);
     carouselVideoList.value = await addList(5);
-    loaded.value = true;
+
+    carouselVideoList.value && (loaded.value = true);
 
 })
 

@@ -115,11 +115,11 @@
                     </label>
                 </div>
                 <div class="line h-[1px] w-full bg-slate-200"></div>
-                <div class="flex flex-col gap-4 mt-4"  >
-                    
-                    <kon-videoItem   :preview="preview" v-for="i in videoList" :videoData="i"
+                <div class="flex flex-col gap-4 mt-4">
+
+                    <kon-videoItem :preview="preview" v-for="i in videoList" :videoData="i"
                         :direction="true"></kon-videoItem>
-                        <kon-videoItemWindow :direction="true" v-if="!isLoaded" v-for="i in 8"></kon-videoItemWindow>
+                    <kon-videoItemWindow :direction="true" v-if="!isLoaded" v-for="i in 8"></kon-videoItemWindow>
                     <div @click="addMore()"
                         class="text-sm text-[var(--textColor1)] bg-[var(--textColor5)] py-2 text-center rounded-lg cursor-pointer hover:text-[var(--textColorBlue)]">
                         查看更多</div>
@@ -134,13 +134,13 @@ useHead({
     title: "正在加载..."
 })
 import type { sqlVideo, Owner } from '~/types/sqlTable'
-import type { videoInfoWithOwner } from '~/types/other' 
+import type { videoInfoWithOwner } from '~/types/other'
 import { useAuthStore } from "~/store/auth"
 import numToWan from '~/utils/numToWan';
 const auth = useAuthStore();
 const preview = ref(false);
 const route = useRoute();
-const { query } = route;  
+const { query } = route;
 const { bvid } = query;
 const videoData = await $fetch<sqlVideo>("/api/videoDetails?bvid=" + bvid);
 const ownerData = await $fetch<Owner>("/api/videoOwners?mid=" + videoData.mid);
@@ -148,6 +148,7 @@ const isLoaded = ref(false);
 useHead({
     title: videoData.title
 })
+ 
 let videoList = ref<Array<sqlVideo>>([])
 async function addList(num: number) {
     isLoaded.value = false;
@@ -157,10 +158,10 @@ async function addList(num: number) {
     }, 1000);
     return data
 }
-const  addMore = async () => {
-    let data= await addList(8);
-    videoList.value = videoList.value.concat( data);
-}   
+const addMore = async () => {
+    let data = await addList(8);
+    videoList.value = videoList.value.concat(data);
+}
 
 
 onMounted(async () => {
