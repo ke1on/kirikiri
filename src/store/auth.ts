@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import type { loginBody, registerBody, registerResponse, useInfo } from '~/types/auth'
 import { ElMessage } from 'element-plus'
+
 export const useAuthStore = defineStore('auth', {
   state: () => ({
     useInfo: {
@@ -12,17 +13,18 @@ export const useAuthStore = defineStore('auth', {
     isLogin: false,
   }),
   actions: {
-    async login(credentials: loginBody) {
+    async login(credentials: loginBody | useInfo) {
       const res: any = await $fetch("/api/auth/login", { method: "POST", body: credentials })
-      if (res.code === true) {
-        localStorage.setItem('useInfo', JSON.stringify(res.data.recordset[0]));
-        this.useInfo = res.data.recordset[0];
-        ElMessage.success('登录成功！');
+      console.log(res)
+      if (res.code === 200) {
+        localStorage.setItem('useInfo', JSON.stringify(res.data));
+        this.useInfo = res.data;
+        ElMessage.success(`欢迎~ ${this.useInfo.useName}`);
         this.isLogin = true
         return true
 
       } else {
-        ElMessage.error('登录失败！')
+        ElMessage.error(res.msg)
         console.log(res)
       }
 
@@ -34,12 +36,15 @@ export const useAuthStore = defineStore('auth', {
       this.useInfo.useID = '';
       localStorage.removeItem('useInfo')
     },
-    initialize() {
-      let useInfoStr  = localStorage.getItem('useInfo');
+    async initialize() {
+      let useInfoStr = localStorage.getItem('useInfo');
       if (useInfoStr) {
-        let a = JSON.parse(useInfoStr) as loginBody;
-        this.login(a)
+        let useInfo: useInfo = JSON.parse(useInfoStr);
+        await this.login(useInfo)
+      } else {
+        ElMessage.success(`欢迎~游客san`);
       }
+
     },
     async register(credentials: registerBody) {
       const res = await $fetch("/api/auth/register", { method: "POST", body: credentials }) as registerResponse
